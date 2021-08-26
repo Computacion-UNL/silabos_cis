@@ -1,0 +1,19 @@
+<odoo>
+    <record id="module_da_silabo" model="ir.module.category">
+        <field name="name">Silabo</field>
+    </record>
+    <record id="res_groups_administrador" model="res.groups">
+        <field name="name">Administrador</field>
+        <field name="category_id" ref="da_silabo.module_da_silabo"/>
+    </record>
+
+    <record id="res_groups_docente" model="res.groups">
+        <field name="name">Docentes</field>
+        <field name="category_id" ref="da_silabo.module_da_silabo"/>
+    </record>
+
+    <record id="res_groups_docente_consejo" model="res.groups">
+        <field name="name">Consejo Consultivo</field>
+        <field name="category_id" ref="da_silabo.module_da_silabo"/>
+    </record>
+</odoo>

@@ -1,0 +1,2750 @@
+<odoo>
+    <data>
+
+        <!--Vista Buscar Plan-->
+        <record model="ir.ui.view" id="view_plananaliticos_search">
+            <field name="name">das.planesanaliticos.view.search</field>
+            <field name="model">das.documentosplan</field>
+            <field name="arch" type="xml">
+                <search string="Documentos Planes Analíticos">
+                    <field name="name"/>
+                    <field name="revisor_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Aprobado Consejo C." name="group_stage_id"
+                        context="{'group_by': 'aprobado_consejo'}"/>
+                        <separator/>
+                        <filter string="Consejo Consultivo" name="group_user_id"
+                        context="{'group_by': 'revisor_id'}"/>
+                        <separator/>
+                        <filter string="Planes Aprobado"
+                                name="group_estado_tarea_ini"
+                                domain="[('documento_aprobado', '!=' ,False)]"/>
+                        <filter string="Planes no aprobados"
+                                name="group_estado_tarea_fin"
+                                domain="[('documento_aprobado', '=' ,False)]"/>
+                        <separator/>
+                        <filter string="Tareas con Documentos a revisar"
+                                name="group_estado_tarea_evidencia"
+                                domain="[('documento_revisar', '!=' ,False)]"/>
+                        <separator/>
+                        <filter string="Revisados"
+                                name="group_revisados"
+                                domain="[('aprobado_consejo', '=' ,True)]"/>
+                        <separator/>
+                        <filter string="No Revisados"
+                                name="group_norevisados"
+                                domain="[('aprobado_consejo', '=' ,False)]"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+         <!--Vista Buscar Silabo-->
+        <record model="ir.ui.view" id="view_silabos_search">
+            <field name="name">das.silabos.view.search</field>
+            <field name="model">das.documentossilabo</field>
+            <field name="arch" type="xml">
+                <search string="Documentos Sílabos">
+                    <field name="name"/>
+                    <field name="revisor_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Aprobado Consejo C." name="group_stage_id"
+                        context="{'group_by': 'aprobado_consejo'}"/>
+                        <separator/>
+                        <filter string="Consejo Consultivo" name="group_user_id"
+                        context="{'group_by': 'revisor_id'}"/>
+                        <separator/>
+                        <filter string="Silaboss Aprobado"
+                                name="group_estado_tarea_ini"
+                                domain="[('documento_aprobado', '!=' ,False)]"/>
+                        <filter string="Sílabos no aprobados"
+                                name="group_estado_tarea_fin"
+                                domain="[('documento_aprobado', '=' ,False)]"/>
+                        <separator/>
+                        <filter string="Tareas con Documentos a revisar"
+                                name="group_estado_tarea_evidencia"
+                                domain="[('documento_revisar', '!=' ,False)]"/>
+                        <separator/>
+                        <filter string="Revisados"
+                                name="group_revisados"
+                                domain="[('aprobado_consejo', '=' ,True)]"/>
+                        <separator/>
+                        <filter string="No Revisados"
+                                name="group_norevisados"
+                                domain="[('aprobado_consejo', '=' ,False)]"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!--Usuario-->
+        <!--Vistas-->
+        <!--Vista Form Docente-->
+        <record id="view_form_docente" model="ir.ui.view">
+            <field name="name">view.form.res.users</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                            <field name="name" required="1"/>
+                            </group>
+                            <group>
+                            <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_128&quot;}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="login" string="Correo Electrónico"/>
+                                <field name="email" invisible="1"/>
+                                <field name="function"/>
+
+                                <field name="groups_id"/> <!-- domain="['|','|', ('id','=',31),('id','=',32),('id','=',33)]"-->
+                            </group>
+                        </group>
+                        <group>
+                           <!-- <field name="perfil_id" widget="one2many_tags"/>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Tree Docente-->
+        <record id="view_tree_docente" model="ir.ui.view">
+            <field name="name">view.tree.res.docente</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Form Programa estudios-->
+        <record id="view_form_programaestudios" model="ir.ui.view">
+            <field name="name">view.form.das.programaestudios</field>
+            <field name="model">das.programaestudios</field>
+            <field name="arch" type="xml">
+                <form  create="false">
+                    <sheet>
+                        <div class="oe_button_box d-flex justify-content-end" name="button_box">
+                        </div>
+                            <group>
+                                <group>
+                                   <field name="name" />
+                                </group>
+                                <group>
+                                    <field name="nivel"/>
+                                </group>
+
+                                <group>
+                                    <field name="vigencia"/>
+                                </group>
+
+                                <group>
+                                    <field name="lugar"/>
+                                </group>
+
+                                <group>
+                                    <field name="ute"/>
+                                </group>
+                            </group>
+
+                                <field name="ciclo_ids"/>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                            <field name="message_ids" widget="mail_thread" groups="plan_mejoras.res_groups_administrador,plan_mejoras.res_groups_docente_consejo"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+          <!-- Form Unidad-->
+        <record id="view_form_unidad" model="ir.ui.view">
+            <field name="name">view.form.das.unidad</field>
+            <field name="model">das.unidad</field>
+            <field name="arch" type="xml">
+                <form  create="false">
+                    <sheet>
+                        <div class="oe_button_box d-flex justify-content-end" name="button_box">
+                        </div>
+
+                                <group>
+                                    <field name="asignatura_id"/>
+                                </group>
+
+                                <group>
+                                   <field name="name" />
+                                </group>
+                                <group>
+                                    <field name="numero"/>
+                                </group>
+
+                                <group>
+                                    <field name="horas"/>
+                                </group>
+
+                                <group>
+                                    <field name="contenido_teorico"/>
+                                </group>
+
+                                <group>
+                                    <field name="horas_teorico"/>
+                                </group>
+
+                                <group>
+                                    <field name="actividades_practicas"/>
+                                </group>
+
+                                <group>
+                                    <field name="horas_practicas"/>
+                                </group>
+
+                                <group>
+                                    <field name="aprendizaje_autonomo"/>
+                                </group>
+
+                                <group>
+                                    <field name="horas_autonomo"/>
+                                </group>
+
+                                <group>
+                                    <field name="estrategias_evaluacion"/>
+                                </group>
+
+                                <group>
+                                    <field name="numero_sesiones"/>
+                                </group>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                            <field name="message_ids" widget="mail_thread" groups="plan_mejoras.res_groups_administrador,plan_mejoras.res_groups_docente_consejo"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <!-- Form Sesion-->
+        <record id="view_form_sesion" model="ir.ui.view">
+            <field name="name">view.form.das.sesion</field>
+            <field name="model">das.sesion</field>
+            <field name="arch" type="xml">
+                <form  create="false">
+                    <sheet>
+                        <div class="oe_button_box d-flex justify-content-end" name="button_box">
+                        </div>
+                                <group>
+                                   <field name="name" />
+                                </group>
+                                <group>
+                                    <field name="fecha_inicio"/>
+                                </group>
+
+                                <group>
+                                    <field name="fecha_fin"/>
+                                </group>
+
+                                <group>
+                                    <field name="duracion"/>
+                                </group>
+
+                                <group>
+                                    <field name="contenidos"/>
+                                </group>
+
+                                <group>
+                                    <field name="actividades_practicas"/>
+                                </group>
+
+                                <group>
+                                    <field name="trabajo_autonomo"/>
+                                </group>
+
+                                <group>
+                                    <field name="escenario_aprendizaje"/>
+                                </group>
+
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                            <field name="message_ids" widget="mail_thread" groups="plan_mejoras.res_groups_administrador,plan_mejoras.res_groups_docente_consejo"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Tree Sesiones-->
+        <record id="view_tree_sesion" model="ir.ui.view">
+            <field name="name">view.tree.das.sesion</field>
+            <field name="model">das.sesion</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                </tree>
+            </field>
+        </record>
+
+         <!-- Form Perffil Docente-->
+        <record id="view_form_perfil" model="ir.ui.view">
+            <field name="name">view.form.das.perfil</field>
+            <field name="model">das.perfil</field>
+            <field name="arch" type="xml">
+                <form  create="false">
+                    <sheet>
+                        <div class="oe_button_box d-flex justify-content-end" name="button_box">
+                        </div>
+                                <group>
+                                   <field name="titulo_tn" />
+                                </group>
+                                <group>
+                                    <field name="titulo_cn"/>
+                                </group>
+
+                                <group>
+                                    <field name="habilidades"/>
+                                </group>
+
+                                <group>
+                                    <field name="actitudes"/>
+                                </group>
+
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                            <field name="message_ids" widget="mail_thread" groups="plan_mejoras.res_groups_administrador,plan_mejoras.res_groups_docente_consejo"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+          <!--Vista Tree perfil-->
+        <record id="view_tree_perfil" model="ir.ui.view">
+            <field name="name">view.tree.das.perfil</field>
+            <field name="model">das.perfil</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="titulo_tn"/>
+                    <field name="titulo_cn"/>
+                </tree>
+            </field>
+        </record>
+
+         <!--Vista Tree Docente-->
+        <record id="view_tree_programaestudios" model="ir.ui.view">
+            <field name="name">view.tree.das.programaestudios</field>
+            <field name="model">das.programaestudios</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="nivel"/>
+                    <field name="vigencia"/>
+                    <field name="lugar"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--act_window-->
+        <!--Accion de ventana Docente-->
+        <record id="action_view_usuario" model="ir.actions.act_window">
+            <field name="name">Docentes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear un Usuario en el módulo Diseño y Actualización de Sílabos
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Perfil-->
+        <record id="action_view_perfil" model="ir.actions.act_window">
+            <field name="name">Perfil</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.perfil</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear un Perfil en el módulo Diseño y Actualización de Sílabos
+                </p>
+            </field>
+        </record>
+
+        <!--act_window.view-->
+        <!--Accion de ventana docente form-->
+        <record id="action_view_docente_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_docente"/>
+            <field name="act_window_id" ref="action_view_usuario"/>
+        </record>
+
+        <!--Accion de ventana docente tree-->
+        <record id="action_view_docente_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_docente"/>
+            <field name="act_window_id" ref="action_view_usuario"/>
+        </record>
+
+        <!--Accion de ventana perfil form-->
+        <record id="action_view_perfil_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_perfil"/>
+            <field name="act_window_id" ref="action_view_perfil"/>
+        </record>
+
+        <!--Accion de ventana docente tree-->
+        <record id="action_view_perfil_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_perfil"/>
+            <field name="act_window_id" ref="action_view_perfil"/>
+        </record>
+
+
+        <!--Accion de ventana Ciclo-->
+        <record id="action_view_ciclo" model="ir.actions.act_window">
+            <field name="name">Ciclos</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.ciclo</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear un Ciclo en el módulo de Silabos
+                </p>
+            </field>
+        </record>
+
+         <!--Vista Kanban Ciclo-->
+        <record id="view_kanban_ciclo" model="ir.ui.view">
+            <field name="name">view.kanban.das.ciclo</field>
+            <field name="model">das.ciclo</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                 <kanban>
+                   <field name="name" invisible = "1" groups="da_silabo.res_groups_administrador"/>
+                   <field name="paralelo"/>
+                     <field name="periodoacademico_ids"/>
+
+                   <templates>
+                       <t t-name="kanban-box">
+                           <div t-attf-class="oe_kanban_global_click">
+                               <div class="o_kanban_image">
+                                   <img src='/da_silabo/static/src/CISC.jpeg' alt="Plan Actividades"/>
+                               </div>
+                               <div class="oe_kanban_details">
+                                       <strong>
+                                           <ul>
+                                                <!--<li class="text-danger float-right mb4" t-if="record.finalizado.raw_value"><i class="fa fa-circle" role="img" aria-label="Finalizado" title="Finalizado"></i></li>-->
+                                                <!--<li class="text-success float-right mb4" t-if="!record.finalizado.raw_value"><i class="fa fa-circle" role="img" aria-label="En Curso" title="En Curso"></i></li>-->
+                                           </ul>
+                                       </strong>
+                                   </div>
+                               <div class="oe_kanban_details">
+                                   <t class="o_kanban_record_title">
+                                       <h5><strong t-esc="record.name.value"/></h5>
+                                   </t>
+
+                                   <div t-if="record.paralelo.value">
+                                       <p><strong>Paralelo: </strong><t t-esc="record.paralelo.value"/></p>
+                                   </div>
+
+                                   <div t-if="record.periodoacademico_ids.value">
+                                       <p><strong>Periodo Academico: </strong><t t-esc="record.periodoacademico_ids.value"/></p>
+                                   </div>
+
+                               </div>
+
+                               <!--<div align="right" class="oe_button_box" >
+                                    <button id="task_view"
+                                            string="Ver Asignaturas"
+                                            type="object"
+                                            name="vista_tree_tareas"
+                                            attrs="{'invisible':[('finalizado', '=', True)]}"
+                                            class="btn btn-primary">Ver Materias</button>
+                               </div> -->
+                           </div>
+                       </t>
+                   </templates>
+                 </kanban>
+            </field>
+        </record>
+
+           <!-- Form Ciclo-->
+        <record id="view_form_ciclo" model="ir.ui.view">
+            <field name="name">view.form.das.ciclo</field>
+            <field name="model">das.ciclo</field>
+            <field name="arch" type="xml">
+                <form  create="false">
+                    <sheet>
+                        <div class="oe_button_box d-flex justify-content-end" name="button_box">
+                        </div>
+                                <group>
+                                    <group>
+                                        <field name="name" />
+                                    </group>
+
+                                    <group>
+                                        <field name="paralelo"/>
+                                    </group>
+
+                                    <group>
+                                         <field name="periodoacademico_ids"/>
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <field name="asignatura_ids"/>
+                                </group>
+
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                            <field name="message_ids" widget="mail_thread" groups="plan_mejoras.res_groups_administrador,plan_mejoras.res_groups_docente_consejo"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+
+        <!--Vista Kanban Asignatura 2021 - 07 - 08 -->
+        <record id="view_kanban_asignatura" model="ir.ui.view">
+            <field name="name">view.kanban.das.asignatura</field>
+            <field name="model">das.asignatura</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                 <kanban>
+                   <field name="name"/>
+                   <field name="codigo_institucional"/>
+                     <field name="codigo_unesco"/>
+                     <field name="prerrequisitos"/>
+                   <templates>
+                       <t t-name="kanban-box">
+                           <div t-attf-class="oe_kanban_global_click">
+                               <div class="o_kanban_image">
+                                   <img src='/da_silabo/static/src/CISC.jpeg' alt="Plan Actividades"/>
+                               </div>
+                               <div class="oe_kanban_details">
+                                       <strong>
+                                           <ul>
+                                                <!--<li class="text-danger float-right mb4" t-if="record.finalizado.raw_value"><i class="fa fa-circle" role="img" aria-label="Finalizado" title="Finalizado"></i></li>-->
+                                                <!--<li class="text-success float-right mb4" t-if="!record.finalizado.raw_value"><i class="fa fa-circle" role="img" aria-label="En Curso" title="En Curso"></i></li>-->
+                                           </ul>
+                                       </strong>
+                                   </div>
+                               <div class="oe_kanban_details">
+                                   <t class="o_kanban_record_title">
+                                       <h5><strong t-esc="record.name.value"/></h5>
+                                   </t>
+
+                                   <div t-if="record.codigo_institucional.value">
+                                       <p><strong>Código institucional: </strong><t t-esc="record.codigo_institucional.value"/></p>
+                                   </div>
+
+                                   <div t-if="record.codigo_unesco.value">
+                                       <p><strong>Código UNESCO: </strong><t t-esc="record.codigo_unesco.value"/></p>
+                                   </div>
+
+                                   <div t-if="record.prerrequisitos.value">
+                                       <p><strong>Prerrequisitos: </strong><t t-esc="record.prerrequisitos.value"/></p>
+                                   </div>
+                               </div>
+                           </div>
+                       </t>
+                   </templates>
+                 </kanban>
+            </field>
+        </record>
+
+        <!--Vista Form Asignatura-->
+        <record id="view_form_asignatura" model="ir.ui.view">
+            <field name="name">view.form.das.asignatura</field>
+            <field name="model">das.asignatura</field>
+            <field name="arch" type="xml">
+                <form  create="false">
+                    <sheet>
+                        <div class="oe_button_box d-flex justify-content-end" name="button_box">
+                        </div>
+                            <group>
+                                <field name="name" />
+                                <field name="codigo_institucional"/>
+                                <field name="codigo_unesco"/>
+                                <field name="user_id"/>
+                                <field name="fecha_culminacion"/>
+                                <field name="prerrequisitos"/>
+                                <field name="correquisitos"/>
+                                <field name="eje_formacion"/>
+                                <field name="tipo"/>
+                                <field name="credito_totales"/>
+                                <field name="credito_teoricos"/>
+                                <field name="credito_practicos"/>
+                                <field name="n_horas_semanales"/>
+                                <field name="n_horas_periodo"/>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                            <field name="message_ids" widget="mail_thread" groups="plan_mejoras.res_groups_administrador,plan_mejoras.res_groups_docente_consejo"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Tree Mis Asignaturas-->
+        <record id="view_tree_misasignaturas" model="ir.ui.view">
+            <field name="name">view.tree.das.asignatura</field>
+            <field name="model">das.asignatura</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="codigo_institucional"/>
+                    <field name="codigo_unesco"/>
+                    <field name="credito_totales"/>
+                    <field name="n_horas_periodo"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Tree Documentos Plan-->
+        <record id="view_tree_documentosplan" model="ir.ui.view">
+            <field name="name">view.tree.das.documentosplan</field>
+            <field name="model">das.documentosplan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="plananalitico_id"/>
+                    <field name="documento_revisar" widget="binary"/>
+                    <field name="documento_aprobado" widget="binary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Tree Documentos Plan dOCENTE-->
+        <record id="view_tree_documentosplan_docente" model="ir.ui.view">
+            <field name="name">view.tree.das.documentosplan</field>
+            <field name="model">das.documentosplan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="plananalitico_id"/>
+                    <field name="documento_revisar" widget="binary"/>
+                    <field name="documento_aprobado" widget="binary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Tree Documentos Plan Consejo-->
+        <record id="view_tree_documentosplan_docenteC" model="ir.ui.view">
+            <field name="name">view.tree.das.documentosplan</field>
+            <field name="model">das.documentosplan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="plananalitico_id"/>
+                    <field name="documento_revisar" widget="binary"/>
+                    <field name="documento_aprobado" widget="binary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Tree Documentos Sílabo-->
+        <record id="view_tree_documentossilabo" model="ir.ui.view">
+            <field name="name">view.tree.das.documentossilabo</field>
+            <field name="model">das.documentossilabo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="silabo_id"/>
+                    <field name="documento_revisar" widget="binary"/>
+                    <field name="documento_aprobado" widget="binary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Tree Documentos Sílabo docente-->
+        <record id="view_tree_documentossilabo_docente" model="ir.ui.view">
+            <field name="name">view.tree.das.documentossilabo</field>
+            <field name="model">das.documentossilabo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="silabo_id"/>
+                    <field name="documento_revisar" widget="binary"/>
+                    <field name="documento_aprobado" widget="binary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Tree Documentos Sílabo docente consejo-->
+        <record id="view_tree_documentossilabo_docenteC" model="ir.ui.view">
+            <field name="name">view.tree.das.documentossilabo</field>
+            <field name="model">das.documentossilabo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="silabo_id"/>
+                    <field name="documento_revisar" widget="binary"/>
+                    <field name="documento_aprobado" widget="binary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Tree Bibliografía-->
+        <record id="view_tree_bibliografia" model="ir.ui.view">
+            <field name="name">view.tree.das.bibliografia</field>
+            <field name="model">das.bibliografia</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="autor"/>
+                    <field name="name"/>
+                    <field name="edicion"/>
+                    <field name="anio_publicacion"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+        <!--Vista Form Mis Asignaturas-->
+        <record id="view_form_misasignatura" model="ir.ui.view">
+            <field name="name">view.form.das.misasignatura</field>
+            <field name="model">das.asignatura</field>
+            <field name="arch" type="xml">
+                <form  create="false">
+                    <sheet>
+                        <div class="oe_button_box d-flex justify-content-end" name="button_box">
+                        </div>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="codigo_institucional" readonly="1"/>
+                                <field name="codigo_unesco" readonly="1"/>
+                                <field name="user_id" readonly="1"/>
+                                <field name="eje_formacion" readonly="1"/>
+                                <field name="tipo" readonly="1"/>
+                                <field name="credito_totales" readonly="1"/>
+                                <field name="credito_teoricos" readonly="1"/>
+                                <field name="credito_practicos" readonly="1"/>
+                                <field name="n_horas_semanales" readonly="1"/>
+                                <field name="n_horas_periodo" readonly="1"/>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                    <!--<div class="oe_chatter">
+                            <field name="message_ids" widget="mail_thread" groups="plan_mejoras.res_groups_administrador,plan_mejoras.res_groups_docente_consejo"/>
+                    </div>-->
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Plan Analitico-->
+        <record id="view_form_plananaliticoAdmin" model="ir.ui.view">
+            <field name="name">view.form.das.plananalitico</field>
+            <field name="model">das.plananalitico</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirmar" class="oe_highlight"/>
+                        <button name="action_return" type="object" string="Volver"  class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="inicio,fin"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="1. Datos de Identificación de la Asignatura">
+                                <group>
+                                    <group>
+                                       <field name="asignatura_ids"/>
+
+                                        <field name="dependencia_tutoria"/>
+                                    </group>
+                                    <group>
+                                       <field name="estadoplan_id"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="contrib_formacion_profesional"/>
+                                </group>
+                            </page>
+                            <page string="2. Descripción de la Asignatura">
+                                <group>
+                                     <field name="metodologia"/>
+                                </group>
+
+                            </page>
+
+                            <page string="3. Objetivos">
+                                <group>
+                                    <field name="objetivos"/>
+                                </group>
+                            </page>
+                            <page string="4. Contenidos y Organización">
+                                <group>
+                                   <field name="contenidoplan_id"/>
+                                </group>
+                            </page>
+
+                            <page string="5. Resultados de Aprendizaje">
+                                <group>
+                                    <field name="resultados_aprendizaje"/>
+                                </group>
+                            </page>
+                            <page string="6. Metodología de Enseñanza - Aprendizaje">
+                                <group>
+                                    <field name="estrategia_metodologicas"/>
+                                </group>
+                            </page>
+                            <page string="7. Evaluación">
+                                <group>
+                                     <field name="criterioevaluacion_id"/>
+                                </group>
+
+                            </page>
+
+                            <page string="8. Bibliografía">
+                                <group>
+                                    <field name="bibliografia_ids"/>
+                                </group>
+                            </page>
+
+                            <page string="9. Elaboración y Aprobación">
+                                <group>
+                                    <group>
+                                        <field name="responsable" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="version"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="fecha_elaboracion"/>
+                                    </group>
+                                    <group>
+                                        <field name="fecha_aprobacion" readonly="1"/>
+                                    </group>
+
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Vista Form Plan Analitico-->
+        <record id="view_form_plananalitico" model="ir.ui.view">
+            <field name="name">view.form.das.plananalitico</field>
+            <field name="model">das.plananalitico</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirmar" class="oe_highlight"/>
+                        <button name="action_return" type="object" string="Volver"  class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="inicio,fin"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="1. Datos de Identificación de la Asignatura">
+                                <group>
+                                    <group>
+                                       <field name="asignatura_ids"/>
+
+                                        <field name="dependencia_tutoria"/>
+                                    </group>
+                                    <group>
+                                       <field name="estadoplan_id"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="contrib_formacion_profesional"/>
+                                </group>
+                            </page>
+                            <page string="2. Descripción de la Asignatura">
+                                <group>
+                                     <field name="metodologia"/>
+                                </group>
+
+                            </page>
+
+                            <page string="3. Objetivos">
+                                <group>
+                                    <field name="objetivos"/>
+                                </group>
+                            </page>
+                            <page string="4. Contenidos y Organización">
+                                <group>
+                                   <field name="contenidoplan_id"/>
+                                </group>
+                            </page>
+
+                            <page string="5. Resultados de Aprendizaje">
+                                <group>
+                                    <field name="resultados_aprendizaje"/>
+                                </group>
+                            </page>
+                            <page string="6. Metodología de Enseñanza - Aprendizaje">
+                                <group>
+                                    <field name="estrategia_metodologicas"/>
+                                </group>
+                            </page>
+                            <page string="7. Evaluación">
+                                <group>
+                                     <field name="criterioevaluacion_id"/>
+                                </group>
+
+                            </page>
+
+                            <page string="8. Bibliografía">
+                                <group>
+                                    <field name="bibliografia_ids"/>
+                                </group>
+                            </page>
+
+                            <page string="9. Elaboración y Aprobación">
+                                <group>
+                                    <group>
+                                        <field name="responsable" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="version"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="fecha_elaboracion"/>
+                                    </group>
+                                    <group>
+                                        <field name="fecha_aprobacion" readonly="1"/>
+                                    </group>
+
+                                </group>
+                            </page>
+
+                        </notebook>
+                        <group>
+
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Silabo-->
+        <record id="view_form_silabo" model="ir.ui.view">
+            <field name="name">view.form.das.silabo</field>
+            <field name="model">das.silabo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirmar" class="oe_highlight"/>
+                        <button name="action_return" type="object" string="Volver"  class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="inicio,fin"/>
+                    </header>
+                    <sheet>
+                            <group>
+                               <field name="name"/>
+                            </group>
+                            <notebook>
+                                <page string="Datos Generales y Especificos de la Asignatura">
+                                    <group>
+                                        <group>
+                                            <field name="asignatura_ids"/>
+                                        </group>
+                                        <group>
+                                             <field name="plananalitico_id"/>
+                                        </group>
+                                    </group>
+                                </page>
+
+                                <page string="Estructura de la Asignatura">
+
+                                        <group>
+                                            <field name="unidad_ids"/>
+                                        </group>
+                                        <group>
+                                             <field name="valores" />
+                                        </group>
+
+
+                                        <group>
+                                             <field name="recursos" />
+                                        </group>
+
+                                        <group>
+                                             <field name="tipoaprendizaje_ids"/>
+                                        </group>
+
+                                </page>
+
+                                <page string="Horario">
+                                    <group>
+                                        <field name="horario"/>
+                                    </group>
+
+                                </page>
+
+                                <page string="Desarrollo">
+                                    <group>
+                                        <field name="sesion_ids"/>
+                                    </group>
+
+                                </page>
+
+                                <page string="Bibliografia">
+                                    <group>
+                                        <field name="bibliografia_ids"/>
+                                    </group>
+
+                                </page>
+
+                                <page string="Perfil del Profesor de la Asignatura">
+                                    <group>
+                                        <field name="perfil_ids"/>
+                                    </group>
+
+                                </page>
+
+                                <page string="Relación de los contenidos con resultados de aprendizaje">
+                                    <group>
+                                        <field name="contribucion_ids"/>
+                                    </group>
+
+                                </page>
+
+                                <page string="Relación de resultados de aprendizaje con perfil de egreso">
+                                    <group>
+                                        <field name="perfilegreso_ids"/>
+                                    </group>
+
+                                </page>
+
+                                <page string="Elaboración y Aprobación">
+                                    <group>
+                                        <field name="version"/>
+                                        <field name="responsable" readonly="1"/>
+                                        <field name="estadosilabo_id"/>
+                                        <field name="fecha_elaboracion"/>
+                                        <!--<field name="fecha_revision"/>-->
+                                        <field name="fecha_aprobacion" readonly="1"/>
+                                        <field name="fecha_actualizacion"/>
+                                    </group>
+
+                                </page>
+
+                            </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Silabo Admin-->
+        <record id="view_form_silaboAdmin" model="ir.ui.view">
+            <field name="name">view.form.das.silabo</field>
+            <field name="model">das.silabo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirmar" class="oe_highlight"/>
+                        <button name="action_return" type="object" string="Volver"  class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="inicio,fin"/>
+                    </header>
+                    <sheet>
+                        <group>
+                               <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="Datos Generales y Especificos de la Asignatura">
+                                <group>
+                                    <group>
+                                        <field name="asignatura_ids"/>
+                                    </group>
+                                    <group>
+                                        <field name="plananalitico_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                                <page string="Estructura de la Asignatura">
+                                    <group>
+                                        <field name="unidad_ids"/>
+                                    </group>
+                                    <group>
+                                        <field name="valores" />
+                                    </group>
+                                    <group>
+                                        <field name="recursos" />
+                                    </group>
+                                    <group>
+                                        <field name="tipoaprendizaje_ids"/>
+                                    </group>
+                                </page>
+                            <page string="Horario">
+                                <group>
+                                    <field name="horario"/>
+                                </group>
+                            </page>
+                            <page string="Desarrollo">
+                                <group>
+                                    <field name="sesion_ids"/>
+                                </group>
+                            </page>
+                            <page string="Bibliografia">
+                                <group>
+                                    <field name="bibliografia_ids"/>
+                                </group>
+                            </page>
+                            <page string="Perfil del Profesor de la Asignatura">
+                                <group>
+                                    <field name="perfil_ids"/>
+                                </group>
+                            </page>
+                            <page string="Relación de los contenidos con resultados de aprendizaje">
+                                <group>
+                                    <field name="contribucion_ids"/>
+                                </group>
+                            </page>
+                            <page string="Relación de resultados de aprendizaje con perfil de egreso">
+                                <group>
+                                    <field name="perfilegreso_ids"/>
+                                </group>
+                            </page>
+                            <page string="Elaboración y Aprobación">
+                                <group>
+                                    <field name="responsable" readonly="1"/>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="version"/>
+                                    </group>
+                                    <group>
+                                        <field name="estadosilabo_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="fecha_elaboracion"/>
+                                    </group>
+                                    <group>
+                                        <field name="fecha_actualizacion"/>
+                                    </group>
+                                    <group>
+                                        <field name="fecha_aprobacion" readonly="1"/>
+                                    </group>
+                                    <!--<field name="fecha_revision"/>-->
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+
+        <!--Vista Form Documentos Plan Analitico-->
+        <record id="view_form_documentosplan" model="ir.ui.view">
+            <field name="name">view.form.das.documentosplan</field>
+            <field name="model">das.documentosplan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+               <button name="send_mail_template" string="Reenviar Notificación" type="object" class="oe_highlight"/>
+                    </header>
+                        <group>
+                            <group><field name="plananalitico_id"/></group>
+                            <group> </group>
+                            <group><field name="documento_revisar" readonly="1"/></group>
+                            <group> </group>
+                            <group><field name="documento_aprobado"/></group>
+                            <group> </group>
+                            <group>
+                                <field name="revisor_id"/>
+                            </group>
+                            <group>
+                                <field name="aprobado_consejo" readonly="1"/>
+                            </group>
+
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Documentos Plan Analitico Docente-->
+        <record id="view_form_documentosplan_docente" model="ir.ui.view">
+            <field name="name">view.form.das.documentosplan</field>
+            <field name="model">das.documentosplan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="plananalitico_id"/></group>
+                            <group> </group>
+                            <group><field name="documento_revisar"/></group>
+                            <group> </group>
+                            <group><field name="documento_aprobado" readonly="1"/></group>
+                            <group> </group>
+
+                            <group>
+                                <field name="revisor_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="aprobado_consejo" groups="da_silabo.res_groups_docente_consejo"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Documentos Plan Analitico Docente Consejo-->
+        <record id="view_form_documentosplan_docenteC" model="ir.ui.view">
+            <field name="name">view.form.das.documentosplan</field>
+            <field name="model">das.documentosplan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="plananalitico_id" readonly="1"/></group>
+                            <group> </group>
+                            <group><field name="documento_revisar" readonly="1"/></group>
+                            <group> </group>
+                            <group><field name="documento_aprobado" readonly="1"/></group>
+                            <group> </group>
+
+                            <group>
+                                <field name="revisor_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="aprobado_consejo"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Documentos Silabo-->
+        <record id="view_form_documentossilabo" model="ir.ui.view">
+            <field name="name">view.form.das.documentossilabo</field>
+            <field name="model">das.documentossilabo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+               <button name="send_mail_template" string="Reenviar Notificación" type="object" class="oe_highlight"/>
+                    </header>
+                        <group>
+                            <group><field name="silabo_id" readonly="1"/></group>
+                            <group></group>
+                            <group><field name="documento_revisar" readonly="1"/></group>
+                            <group></group>
+                            <group><field name="documento_aprobado"/></group>
+                            <group></group>
+
+                            <group>
+                                <field name="revisor_id"/>
+                            </group>
+                            <group>
+                                <field name="aprobado_consejo" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="expirado"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+         <!--Vista Form Documentos Silabo Docente-->
+        <record id="view_form_documentossilabo_docente" model="ir.ui.view">
+            <field name="name">view.form.das.documentossilabo</field>
+            <field name="model">das.documentossilabo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="silabo_id"/></group>
+                            <group></group>
+                            <group><field name="documento_revisar"/></group>
+                            <group></group>
+                            <group><field name="documento_aprobado" readonly="1"/></group>
+                            <group></group>
+
+                            <group>
+                                <field name="revisor_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="aprobado_consejo" groups="da_silabo.res_groups_docente_consejo"/>
+                                <!--<field name="aprobado_consejo"/>-->
+                            </group>
+                            <group>
+                                <field name="expirado" readonly="1"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Documentos Silabo Docente Consejo-->
+        <record id="view_form_documentossilabo_docenteC" model="ir.ui.view">
+            <field name="name">view.form.das.documentossilabo</field>
+            <field name="model">das.documentossilabo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="silabo_id" readonly="1"/></group>
+                            <group></group>
+                            <group><field name="documento_revisar" readonly="1"/></group>
+                            <group></group>
+                            <group><field name="documento_aprobado" readonly="1"/></group>
+                            <group></group>
+
+                            <group>
+                                <field name="revisor_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="aprobado_consejo" />
+                                <!--<field name="aprobado_consejo"/>-->
+                            </group>
+                            <group>
+                                <field name="expirado" readonly="1"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread" groups="da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Estados Sílabos-->
+        <record id="view_form_estadosilabo" model="ir.ui.view">
+            <field name="name">view.form.das.estadosilabo</field>
+            <field name="model">das.estadosilabo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="name"/></group>
+                            <group></group>
+                            <group><field name="description" /></group>
+                            <group></group>
+                            <group><field name="sequence" /></group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Contenidos-->
+        <record id="view_form_contenidosplan" model="ir.ui.view">
+            <field name="name">view.form.das.contenidosplan</field>
+            <field name="model">das.contenidosplan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="numero"/></group>
+
+                            <group><field name="nombre_unidad" /></group>
+                            <field name="detalle_contenidos" />
+
+                            <group><field name="horas_profesor" /></group>
+
+                            <group><field name="horas_tutorias" /></group>
+
+                            <group><field name="horas_practicas" /></group>
+
+                            <group><field name="horas_autonomo" /></group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+         <!--Vista Tree contenidos -->
+        <record id="view_tree_contenidosplan" model="ir.ui.view">
+            <field name="name">view.tree.das.contenidosplan</field>
+            <field name="model">das.contenidosplan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre_unidad"/>
+                    <field name="horas_profesor"/>
+                </tree>
+            </field>
+        </record>
+
+         <!--Vista Form Bibliografia-->
+        <record id="view_form_bibliografia" model="ir.ui.view">
+            <field name="name">view.form.das.bibliografia</field>
+            <field name="model">das.bibliografia</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="tipo"/></group>
+
+                            <group><field name="autor" /></group>
+
+                            <group><field name="name" /></group>
+
+                            <group><field name="ciudad_pais" /></group>
+
+                            <group><field name="edicion" /></group>
+
+                            <group><field name="editorial" /></group>
+
+                            <group><field name="anio_publicacion" /></group>
+                            <group><field name="isbn" /></group>
+                            <group><field name="direccion_electr" /></group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Vista Form Estados Plan analitico-->
+        <record id="view_form_estadoplan" model="ir.ui.view">
+            <field name="name">view.form.das.estadoplan</field>
+            <field name="model">das.estadoplan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="name"/></group>
+                            <group></group>
+                            <group><field name="description" /></group>
+                            <group></group>
+                            <group><field name="sequence" /></group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Form Periodo-->
+        <record id="view_form_periodoacademico" model="ir.ui.view">
+            <field name="name">view.form.das.periodoacademico</field>
+            <field name="model">das.periodoacademico</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group><field name="name"/></group>
+                            <group></group>
+                            <group><field name="fecha_inicio" /></group>
+                            <group></group>
+                            <group><field name="fecha_fin" /></group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Vista Tree criterios evaluacion -->
+        <record id="view_tree_periodoacademico" model="ir.ui.view">
+            <field name="name">view.tree.das.periodoacademico</field>
+            <field name="model">das.periodoacademico</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Form Evaluación-->
+        <record id="view_form_criteriosevaluacion" model="ir.ui.view">
+            <field name="name">view.form.das.criteriosevaluacion</field>
+            <field name="model">das.criteriosevaluacion</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="parametros_evaluacion"/>
+
+                            <group><field name="evaluacion1" /></group>
+
+                            <group><field name="evaluacion2" /></group>
+
+                            <group><field name="evaluacion3" /></group>
+
+                            <group><field name="puntaje_total" /></group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- FORM PERFIL EGRESO-->
+        <record id="view_form_perfilegreso" model="ir.ui.view">
+            <field name="name">view.form.das.perfilegreso</field>
+            <field name="model">das.perfilegreso</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="resultado_aprendizajes"/>
+                        </group>
+                        <group>
+                            <field name="contribucion" />
+                        </group>
+                        <group>
+                            <field name="perfil_egreso"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+         <!--Vista Tree PERFIL EGRESO -->
+        <record id="view_tree_perfilegreso" model="ir.ui.view">
+            <field name="name">view.tree.das.perfilegreso</field>
+            <field name="model">das.perfilegreso</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="resultado_aprendizajes"/>
+                    <field name="contribucion"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM RELACION CONTENIDOS-->
+        <record id="view_form_contribucion" model="ir.ui.view">
+            <field name="name">view.form.das.contribucion</field>
+            <field name="model">das.contribucion</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="contenidos_asignatura"/>
+                        </group>
+                        <group>
+                            <field name="contribucion" />
+                        </group>
+                        <group>
+                            <field name="resultados_aprendizaje"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+         <!--Vista Tree CONTRIBUCION -->
+        <record id="view_tree_contribucion" model="ir.ui.view">
+            <field name="name">view.tree.das.contribucion</field>
+            <field name="model">das.contribucion</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="contenidos_asignatura"/>
+                    <field name="contribucion"/>
+                </tree>
+            </field>
+        </record>
+
+
+         <!--Vista Tree criterios evaluacion -->
+        <record id="view_tree_criteriosevaluacion" model="ir.ui.view">
+            <field name="name">view.tree.das.criteriosevaluacion</field>
+            <field name="model">das.criteriosevaluacion</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="parametros_evaluacion"/>
+                    <field name="evaluacion1"/>
+                    <field name="evaluacion2"/>
+                    <field name="evaluacion3"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Kanban Sílabo-->
+        <record id="view_kanban_silabo" model="ir.ui.view">
+            <field name="name">view.kanban.das.silabo</field>
+            <field name="model">das.silabo</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                <kanban  create="true" default_group_by = "estadosilabo_id" class="o_kanban_small_column o_kanban_project_tasks">
+                    <field name="name"/>
+                    <field name="asignatura_ids"/>
+                    <field name="tipoaprendizaje_ids"/>
+                    <field name="estadosilabo_id"/>
+                    <field name="fecha_elaboracion"/>
+                     <field name="fecha_revision"/>
+                     <field name="fecha_aprobacion"/>
+                     <field name="fecha_actualizacion"/>
+                     <field name="horario"/>
+                     <field name="version"/>
+                     <field name="responsable"/>
+                     <field name="plananalitico_id"/>
+                     <field name="unidad_ids"/>
+                     <field name="bibliografia_ids"/>
+
+                   <templates>
+                       <t t-name="kanban-box">
+                           <div t-attf-class="oe_kanban_global_click">
+                               <div class="o_kanban_image">
+                                   <img src='/da_silabo/static/src/CISC.jpeg' alt="Plan Actividades"/>
+                               </div>
+                               <div class="oe_kanban_details">
+                                       <strong>
+                                           <ul>
+                                                <!--<li class="text-danger float-right mb4" t-if="record.finalizado.raw_value"><i class="fa fa-circle" role="img" aria-label="Finalizado" title="Finalizado"></i></li>-->
+                                                <!--<li class="text-success float-right mb4" t-if="!record.finalizado.raw_value"><i class="fa fa-circle" role="img" aria-label="En Curso" title="En Curso"></i></li>-->
+                                           </ul>
+                                       </strong>
+                                   </div>
+                               <div class="oe_kanban_details">
+
+                                   <div t-if="record.responsable.value">
+                                       <p><strong>Responsable: </strong><t t-esc="record.responsable.value"/></p>
+                                   </div>
+
+                                   <div t-if="record.fecha_elaboracion.value">
+                                       <p><strong>Fecha Elaboración: </strong><t t-esc="record.fecha_elaboracion.value"/></p>
+                                   </div>
+
+                                   <div t-if="record.fecha_aprobacion.value">
+                                       <p><strong>Fecha Aprobación: </strong><t t-esc="record.fecha_aprobacion.value"/></p>
+                                   </div>
+
+
+                               </div>
+
+                               <!--<div align="right" class="oe_button_box" >
+                                    <button id="task_view"
+                                            string="Ver Asignaturas"
+                                            type="object"
+                                            name="vista_tree_tareas"
+                                            attrs="{'invisible':[('finalizado', '=', True)]}"
+                                            class="btn btn-primary">Ver Materias</button>
+                               </div> -->
+                           </div>
+                       </t>
+                   </templates>
+                 </kanban>
+            </field>
+        </record>
+
+         <!--Vista Kanban Plan Analítico-->
+        <record id="view_kanban_plananalitico" model="ir.ui.view">
+            <field name="name">view.kanban.das.plananalitico</field>
+            <field name="model">das.plananalitico</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                 <kanban  create="true" default_group_by = "estadoplan_id" class="o_kanban_small_column o_kanban_project_tasks">
+                     <field name="name"/>
+                     <field name="responsable"/>
+                     <field name="fecha_elaboracion"/>
+                     <field name="fecha_aprobacion"/>
+                     <field name="metodologia"/>
+                     <field name="version"/>
+                     <field name="resultados_aprendizaje"/>
+                     <field name="asignatura_ids"/>
+                     <field name="bibliografia_ids"/>
+
+                   <templates>
+                       <t t-name="kanban-box">
+                           <div t-attf-class="oe_kanban_global_click">
+                               <div class="o_kanban_image">
+                                   <img src='/da_silabo/static/src/CISC.jpeg' alt="Plan Actividades"/>
+                               </div>
+                               <div class="oe_kanban_details">
+                                       <strong>
+                                           <ul>
+                                                <!--<li class="text-danger float-right mb4" t-if="record.finalizado.raw_value"><i class="fa fa-circle" role="img" aria-label="Finalizado" title="Finalizado"></i></li>-->
+                                                <!--<li class="text-success float-right mb4" t-if="!record.finalizado.raw_value"><i class="fa fa-circle" role="img" aria-label="En Curso" title="En Curso"></i></li>-->
+                                           </ul>
+                                       </strong>
+                                   </div>
+                               <div class="oe_kanban_details">
+                                   <t class="o_kanban_record_title">
+                                       <h5><strong t-esc="record.name.value"/></h5>
+                                   </t>
+
+                                   <div t-if="record.responsable.value">
+                                       <p><strong>Responsable: </strong><t t-esc="record.responsable.value"/></p>
+                                   </div>
+
+                                   <div t-if="record.fecha_elaboracion.value">
+                                       <p><strong>Fecha Elaboracion: </strong><t t-esc="record.fecha_elaboracion.value"/></p>
+                                   </div>
+
+                                   <div t-if="record.fecha_aprobacion.value">
+                                       <p><strong>Fecha Aprobacion: </strong><t t-esc="record.fecha_aprobacion.value"/></p>
+                                   </div>
+
+
+
+                               </div>
+
+                               <!--<div align="right" class="oe_button_box" >
+                                    <button id="task_view"
+                                            string="Ver Asignaturas"
+                                            type="object"
+                                            name="vista_tree_tareas"
+                                            attrs="{'invisible':[('finalizado', '=', True)]}"
+                                            class="btn btn-primary">Ver Materias</button>
+                               </div> -->
+                           </div>
+                       </t>
+                   </templates>
+                 </kanban>
+            </field>
+        </record>
+
+
+        <!--Accion de ventana Plan Analítico-->
+        <record id="action_view_plananalitico" model="ir.actions.act_window">
+            <field name="name">Plan analítico</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.plananalitico</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <field name="domain">[('responsable','=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear un Plan Analítico en el módulo de Silabos
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Plan Analítico-->
+        <record id="action_view_plananaliticoAdmin" model="ir.actions.act_window">
+            <field name="name">Planes analítico</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.plananalitico</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear un Plan Analítico en el módulo de Silabos
+                </p>
+            </field>
+        </record>
+
+
+
+         <!--Accion de ventana Documentos Plan Analítico-->
+        <record id="action_view_documentosplan" model="ir.actions.act_window">
+            <field name="name">Documentos del Plan Analítico</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.documentosplan</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('corresponsable','=', uid), conrr = id]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Gestione sus documentos para legalización del Plan Analítico
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Documentos Plan Analítico Docente-->
+        <record id="action_view_documentosplan_docente" model="ir.actions.act_window">
+            <field name="name">Documentos del Plan Analítico Docente</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.documentosplan</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <field name="domain">[('plananalitico_id.responsable','=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Usted no tiene Planes analíticos creados!
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Documentos Plan Analítico Docente consejo-->
+        <record id="action_view_documentosplan_docente_consejo" model="ir.actions.act_window">
+            <field name="name">Documentos del Plan Analítico Docente Consejo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.documentosplan</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <field name="domain">[('revisor_id','=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Usted no posee Planes Analíticos para revisar!
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Documentos Sílaboo-->
+        <record id="action_view_documentossilabo" model="ir.actions.act_window">
+            <field name="name">Documentos del Sílabo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.documentossilabo</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Gestione sus documentos para legalización del Sílabo
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Documentos Sílabo Docente-->
+        <record id="action_view_documentossilabo_docente" model="ir.actions.act_window">
+            <field name="name">Documentos del Sílabo docente</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.documentossilabo</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="domain">[('silabo_id.responsable','=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Usted no tiene Sílabos creados!
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Documentos Sílabo Docente consejo-->
+        <record id="action_view_documentossilabo_docente_consejo" model="ir.actions.act_window">
+            <field name="name">Documentos del Sílabo Docente consejo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.documentossilabo</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="domain">[('revisor_id','=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Usted no posee Sílabos para revisar!
+                </p>
+            </field>
+        </record>
+
+         <!--Accion de ventana Bibliografia -->
+        <record id="action_view_bibliografia" model="ir.actions.act_window">
+            <field name="name">Bibliografía</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.bibliografia</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree bibliografía para su Plan Analitico y Sílabo
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Sesiones -->
+        <record id="action_view_sesion" model="ir.actions.act_window">
+            <field name="name">Sesiones</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.sesion</field>
+            <field name="view_mode">form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree una sesión para su Sílabo
+                </p>
+            </field>
+        </record>
+
+
+
+        <!--Accion de ventana Sesiones form-->
+        <record id="action_view_sesion_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_sesion"/>
+            <field name="act_window_id" ref="action_view_sesion"/>
+        </record>
+
+        <!--Accion de ventana Ciclo form-->
+        <record id="action_view_ciclo_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_ciclo"/>
+            <field name="act_window_id" ref="action_view_ciclo"/>
+        </record>
+
+
+        <!--Accion de ventana PERFIL EGRESO -->
+        <record id="action_view_perfilegreso" model="ir.actions.act_window">
+            <field name="name">Perfil Egreso</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.perfilegreso</field>
+            <field name="view_mode">form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree la relación de los resultados de aprendizaje con el perfil de egreso para su Sílabo
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana PERFIL EGRESO form-->
+        <record id="action_view_perfilegreso_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_perfilegreso"/>
+            <field name="act_window_id" ref="action_view_perfilegreso"/>
+        </record>
+
+        <!--Accion de ventana PERFIL EGRESO tree-->
+        <record id="action_view_perfilegreso_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_form_perfilegreso"/>
+            <field name="act_window_id" ref="action_view_perfilegreso"/>
+        </record>
+
+
+         <!--Accion de ventana CONTRIBUCION-->
+        <record id="action_view_contribucion" model="ir.actions.act_window">
+            <field name="name">Contribución de contenidos</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.contribucion</field>
+            <field name="view_mode">form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree la relación de los contenidos con los resultados de aprendizaje para su Sílabo
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana CONTRIBUCION form-->
+        <record id="action_view_contribucion_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_contribucion"/>
+            <field name="act_window_id" ref="action_view_contribucion"/>
+        </record>
+
+        <!--Accion de ventana CONTRIBUCION tree-->
+        <record id="action_view_contribucion_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_form_contribucion"/>
+            <field name="act_window_id" ref="action_view_contribucion"/>
+        </record>
+
+
+        <!--Accion de ventana documentos Plan Analitico tree-->
+        <record id="action_view_documentosplan_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_documentosplan"/>
+            <field name="act_window_id" ref="action_view_documentosplan"/>
+        </record>
+
+        <!--Accion de ventana documentos Plan Analitico form-->
+        <record id="action_view_documentosplan_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_documentosplan"/>
+            <field name="act_window_id" ref="action_view_documentosplan"/>
+        </record>
+
+
+        <!--Accion de ventana documentos Plan Analitico tree docente-->
+        <record id="action_view_documentosplan_tree_docente" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_documentosplan_docente"/>
+            <field name="act_window_id" ref="action_view_documentosplan_docente"/>
+        </record>
+
+        <!--Accion de ventana documentos Plan Analitico form docente-->
+        <record id="action_view_documentosplan_form_docente" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_documentosplan_docente"/>
+            <field name="act_window_id" ref="action_view_documentosplan_docente"/>
+        </record>
+
+        <!--Accion de ventana documentos Plan Analitico tree docente consejo-->
+        <record id="action_view_documentosplan_tree_docenteC" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_documentosplan_docenteC"/>
+            <field name="act_window_id" ref="action_view_documentosplan_docente_consejo"/>
+        </record>
+
+        <!--Accion de ventana documentos Plan Analitico form docente consejo-->
+        <record id="action_view_documentosplan_form_docenteC" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_documentosplan_docenteC"/>
+            <field name="act_window_id" ref="action_view_documentosplan_docente_consejo"/>
+        </record>
+
+        <!--Accion de ventana documentos Sílabo tree-->
+        <record id="action_view_documentossilabo_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_documentossilabo"/>
+            <field name="act_window_id" ref="action_view_documentossilabo"/>
+        </record>
+
+          <!--Accion de ventana documentos Silabo form-->
+        <record id="action_view_documentossilabo_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_documentossilabo"/>
+            <field name="act_window_id" ref="action_view_documentossilabo"/>
+        </record>
+
+        <!--Accion de ventana documentos Sílabo tree docente-->
+        <record id="action_view_documentossilabo_tree_docente" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_documentossilabo_docente"/>
+            <field name="act_window_id" ref="action_view_documentossilabo_docente"/>
+        </record>
+
+          <!--Accion de ventana documentos Silabo form docente-->
+        <record id="action_view_documentossilabo_form_docente" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_documentossilabo_docente"/>
+            <field name="act_window_id" ref="action_view_documentossilabo_docente"/>
+        </record>
+
+        <!--Accion de ventana documentos Sílabo tree docente Docente C-->
+        <record id="action_view_documentossilabo_tree_docenteC" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_documentossilabo_docenteC"/>
+            <field name="act_window_id" ref="action_view_documentossilabo_docente_consejo"/>
+        </record>
+
+          <!--Accion de ventana documentos Silabo form docente consejo-->
+        <record id="action_view_documentossilabo_form_docenteC" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_documentossilabo_docenteC"/>
+            <field name="act_window_id" ref="action_view_documentossilabo_docente_consejo"/>
+        </record>
+
+        <!--Accion de ventana bibliografía tree-->
+        <record id="action_view_bibliografia_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_bibliografia"/>
+            <field name="act_window_id" ref="action_view_bibliografia"/>
+        </record>
+
+         <!--Accion de ventana bibliografía form-->
+        <record id="action_view_bibliografia_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_bibliografia"/>
+            <field name="act_window_id" ref="action_view_bibliografia"/>
+        </record>
+
+        <!--Accion de ventana sesion tree-->
+        <record id="action_view_sesion_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_sesion"/>
+            <field name="act_window_id" ref="action_view_sesion"/>
+        </record>
+
+         <!--Accion de ventana Sílabo-->
+        <record id="action_view_silabo" model="ir.actions.act_window">
+            <field name="name">Sílabo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.silabo</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <field name="domain">[('responsable','=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear un  Sílabo en el módulo de Silabos.
+                </p>
+            </field>
+        </record>
+
+
+        <!--Accion de ventana Sílabo kanban-->
+        <record id="action_view_silabo_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="da_silabo.view_kanban_silabo"/>
+            <field name="act_window_id" ref="action_view_silabo"/>
+        </record>
+
+        <!--Accion de ventana Sílabo Admin-->
+        <record id="action_view_silaboAdmin" model="ir.actions.act_window">
+            <field name="name">Sílabo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.silabo</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear un Sílabo en el módulo de Silabos.
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Sílabo form-->
+        <record id="action_view_silabo_kanban_admin" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="da_silabo.view_kanban_silabo"/>
+            <field name="act_window_id" ref="action_view_silaboAdmin"/>
+        </record>
+
+
+        <!--Accion de ventana Sílabo form-->
+        <record id="action_view_silabo_form_admin" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_silaboAdmin"/>
+            <field name="act_window_id" ref="action_view_silaboAdmin"/>
+        </record>
+
+
+        <!--Accion de ventana Unidad-->
+        <record id="action_view_unidad" model="ir.actions.act_window">
+            <field name="name">Unidad</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.unidad</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear una unidad en el módulo de Silabos
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana estado Sílabo-->
+        <record id="action_view_estadosilabo" model="ir.actions.act_window">
+            <field name="name">Estados del Sílabo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.estadosilabo</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear estados para gestionar los Sílabos
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Programa de Estudios-->
+        <record id="action_view_programaestudios" model="ir.actions.act_window">
+            <field name="name">Programas de Estudios</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.programaestudios</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear Programa de estudios para gestionar los Sílabos
+                </p>
+            </field>
+        </record>
+
+         <!--Accion de ventana programa estudios form-->
+        <record id="action_view_programaestudios_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_programaestudios"/>
+            <field name="act_window_id" ref="action_view_programaestudios"/>
+        </record>
+
+        <!--Accion de ventana docente tree-->
+        <record id="action_view_programaestudios_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_programaestudios"/>
+            <field name="act_window_id" ref="action_view_programaestudios"/>
+        </record>
+
+        <!--Accion de ventana form unidad-->
+         <record id="action_view_unidad_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_unidad"/>
+            <field name="act_window_id" ref="action_view_unidad"/>
+        </record>
+
+        <!--Accion de ventana èstado plan-->
+        <record id="action_view_estadoplan" model="ir.actions.act_window">
+            <field name="name">Estados del Plan Analítico</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.estadoplan</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear estados para gestionar los Planes Analíticos
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Criterios de Evaluacion-->
+        <record id="action_view_criteriosevaluacion" model="ir.actions.act_window">
+            <field name="name">Criterios de Evaluacion</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.criteriosevaluacion</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear criterios de Evaluacion para los Planes Analiticos
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana criterios evaluacion tree-->
+        <record id="action_view_criteriosevaluacion_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_criteriosevaluacion"/>
+            <field name="act_window_id" ref="action_view_criteriosevaluacion"/>
+        </record>
+
+         <!--Accion de ventana documentos criterios evaluacion-->
+        <record id="action_view_criteriosevaluacion_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_criteriosevaluacion"/>
+            <field name="act_window_id" ref="action_view_criteriosevaluacion"/>
+        </record>
+
+        <!--Accion de ventana ciclo kanban-->
+        <record id="action_view_ciclo_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="da_silabo.view_kanban_ciclo"/>
+            <field name="act_window_id" ref="action_view_ciclo"/>
+        </record>
+
+
+
+        <!--Accion de ventana Periodo Academico-->
+        <record id="action_view_periodo" model="ir.actions.act_window">
+            <field name="name">Periodo Academico</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.periodoacademico</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear un Periodo Academico en el módulo de Silabos
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Asignatura-->
+        <record id="action_view_asignatura" model="ir.actions.act_window">
+            <field name="name">Asignaturas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.asignatura</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crear una Asignatura en el módulo de Silabos
+                </p>
+            </field>
+        </record>
+
+
+        <!--Accion de ventana asignatura kanban-->
+        <record id="action_view_asignatura_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="da_silabo.view_kanban_asignatura"/>
+            <field name="act_window_id" ref="action_view_asignatura"/>
+        </record>
+
+        <!--Accion de ventana asignatura form-->
+        <record id="action_view_asignatura_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_asignatura"/>
+            <field name="act_window_id" ref="action_view_asignatura"/>
+        </record>
+
+        <!--Accion de ventana misasignatura tree-->
+        <record id="action_view_periodoacademico_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_periodoacademico"/>
+            <field name="act_window_id" ref="action_view_periodo"/>
+        </record>
+
+        <!--Accion de ventana Periodo form-->
+        <record id="action_view_periodoacademico_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_periodoacademico"/>
+            <field name="act_window_id" ref="action_view_periodo"/>
+        </record>
+
+
+
+        <!--Accion de ventana Mis Asignatura-->
+        <record id="action_view_misasignatura" model="ir.actions.act_window">
+            <field name="name">Mis Asignaturas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.asignatura</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('user_id','in', uid)]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    El Administrador no ha registrado asignaturas para su módulo de Silabos
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana Condtenido PLan -->
+        <record id="action_view_contenidosplan" model="ir.actions.act_window">
+            <field name="name">Contenido del Plan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.contenidosplan</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree contenidos para su Plan Analitico
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana TIPO DE APRENDIZAJE-->
+        <record id="action_view_tipoaprendizaje" model="ir.actions.act_window">
+            <field name="name">Tipo de Aprendizaje</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">das.tipoaprendizaje</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
+            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cree Tipos de Aprendizaje para sus Asignaturas
+                </p>
+            </field>
+        </record>
+
+        <!--Accion de ventana misasignatura form-->
+        <record id="action_view_misasignatura_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_misasignatura"/>
+            <field name="act_window_id" ref="action_view_misasignatura"/>
+        </record>
+
+        <!--Accion de ventana contendiso form-->
+        <record id="action_view_contenidosplan_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_contenidosplan"/>
+            <field name="act_window_id" ref="action_view_contenidosplan"/>
+        </record>
+
+        <record id="action_view_contenidosplan_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_contenidosplan"/>
+            <field name="act_window_id" ref="action_view_contenidosplan"/>
+        </record>
+
+        <!--Accion de ventana misasignatura tree-->
+        <record id="action_view_misasignatura_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_misasignaturas"/>
+            <field name="act_window_id" ref="action_view_misasignatura"/>
+        </record>
+
+        <!--Accion de ventana Plan Analitico kanban-->
+        <record id="action_view_plananalitico_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="da_silabo.view_kanban_plananalitico"/>
+            <field name="act_window_id" ref="action_view_plananalitico"/>
+        </record>
+
+        <!--Accion de ventana Plan Analitico kanban Admin-->
+        <record id="action_view_plananalitico_kanban_admin" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="da_silabo.view_kanban_plananalitico"/>
+            <field name="act_window_id" ref="action_view_plananaliticoAdmin"/>
+        </record>
+
+        <!--Accion de ventana Plan Analitico form-->
+        <record id="action_view_plananalitico_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_plananalitico"/>
+            <field name="act_window_id" ref="action_view_plananalitico"/>
+        </record>
+
+         <!--Accion de ventana Plan Analitico form-->
+        <record id="action_view_plananalitico_form_admin" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_plananaliticoAdmin"/>
+            <field name="act_window_id" ref="action_view_plananaliticoAdmin"/>
+        </record>
+
+
+        <!--Accion de ventana Sílabo form-->
+        <record id="action_view_silabo_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="da_silabo.view_form_silabo"/>
+            <field name="act_window_id" ref="action_view_silabo"/>
+        </record>
+
+
+        <menuitem id="menu_main_silabo_app"
+                   name="Silabos CIS"
+                   parent=""
+                   action="da_silabo.action_view_asignatura"/>
+
+        <menuitem id="menu_usuario"
+                  name="Usuarios"
+                  sequence = "1"
+                  groups = "da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo"
+                  parent="da_silabo.menu_main_silabo_app"/>
+
+        <menuitem id="menu_silabo"
+                  name="Periodo"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_administrador,da_silabo.res_groups_docente_consejo,da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_main_silabo_app"/>
+
+
+        <menuitem id="menu_plan_silabo"
+                  name="Planes y Sílabos"
+                  sequence = "4"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_main_silabo_app"/>
+
+        <menuitem id="menu_plan_silaboD"
+                  name="Mis Planes y Sílabos"
+                  sequence = "3"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_main_silabo_app"/>
+
+        <menuitem id="menu_plan"
+                  name="Plan"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_plan_silabo"/>
+
+        <menuitem id="menu_planD"
+                  name="Plan"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_plan_silaboD"/>
+
+
+        <menuitem id="menu_plananalitico"
+                  name="Planes Analíticos"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_plan"
+                  action="da_silabo.action_view_plananaliticoAdmin"/>
+
+        <menuitem id="menu_plananaliticoD"
+                  name="Planes Analíticos"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_planD"
+                  action="da_silabo.action_view_plananalitico"/>
+
+        <menuitem id="menu_documentosplan"
+                  name="Documentos Plan Analítico"
+                  sequence = "3"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_plan"
+                  action="da_silabo.action_view_documentosplan"/>
+
+        <menuitem id="menu_documentosplanD"
+                  name="Documentos Plan Analítico"
+                  sequence = "3"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_planD"
+                  action="da_silabo.action_view_documentosplan_docente"/>
+
+        <menuitem id="menu_g_silabo"
+                  name="Sílabo"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_plan_silabo"/>
+
+        <menuitem id="menu_g_silaboD"
+                  name="Sílabo"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_plan_silaboD"/>
+
+        <menuitem id="menu_silabos"
+                  name="Sílabos"
+                  sequence = "1"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_g_silabo"
+                  action="da_silabo.action_view_silaboAdmin"/>
+
+        <menuitem id="menu_silabosD"
+                  name="Sílabos"
+                  sequence = "1"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_g_silaboD"
+                  action="da_silabo.action_view_silabo"/>
+
+        <menuitem id="menu_documentossilabo"
+                  name="Documentos Sílabo"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_g_silabo"
+                  action="da_silabo.action_view_documentossilabo"/>
+
+        <menuitem id="menu_documentossilaboD"
+                  name="Documentos Sílabo"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_g_silaboD"
+                  action="da_silabo.action_view_documentossilabo_docente"/>
+
+        <menuitem id="menu_gestionasignatura"
+                  name="Asignatura"
+                  sequence = "4"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_main_silabo_app"/>
+
+        <menuitem id="menu_camposplan"
+                  name="Campos Plan Analítico"
+                  sequence="1"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_gestionasignatura"/>
+
+        <menuitem id="menu_contenidosplan"
+                  name="Contenidos Plan"
+                  sequence = "1"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_camposplan"
+                  action="da_silabo.action_view_contenidosplan"/>
+
+        <menuitem id="menu_campossilabo"
+                  name="Campos Sílabo"
+                  sequence="2"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_gestionasignatura"/>
+
+        <menuitem id="menu_unidades"
+                  name="Unidades"
+                  sequence = "1"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_campossilabo"
+                  action="da_silabo.action_view_unidad"/>
+
+        <menuitem id="menu_tipoaprendizaje"
+                  name="Tipo de Aprendizaje"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_campossilabo"
+                  action="da_silabo.action_view_tipoaprendizaje"/>
+
+        <menuitem id="menu_sesion"
+                  name="Sesiones"
+                  sequence = "3"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_campossilabo"
+                  action="da_silabo.action_view_sesion"/>
+
+        <menuitem id="menu_bibliografia"
+                  name="Bibliografía"
+                  sequence = "4"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_gestionasignatura"
+                  action="da_silabo.action_view_bibliografia"/>
+
+         <menuitem id="menu_criteriosevaluacion"
+                  name="Criterios de Evaluacion"
+                  sequence = "5"
+                  groups = "da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_gestionasignatura"
+                  action="da_silabo.action_view_criteriosevaluacion"/>
+
+
+
+
+
+        <menuitem id="menu_docente"
+                  name="Docentes"
+                  sequence="1"
+                  groups="da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_usuario"
+                  action="da_silabo.action_view_usuario"/>
+
+
+        <menuitem id="menu_periodo"
+                  name="Periodo Academico"
+                  sequence = "1"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_silabo"
+                  action="da_silabo.action_view_periodo"/>
+
+        <menuitem id="menu_ciclo"
+                  name="Ciclos"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_silabo"
+                  action="da_silabo.action_view_ciclo"/>
+
+        <menuitem id="menu_asignatura"
+                  name="Asignaturas"
+                  sequence="3"
+                  groups="da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_silabo"
+                  action="da_silabo.action_view_asignatura"/>
+
+        <menuitem id="menu_misasignatura"
+                  name="Mis Asignaturas"
+                  sequence="1"
+                  groups="da_silabo.res_groups_docente"
+                  parent="da_silabo.menu_main_silabo_app"
+                  action="da_silabo.action_view_misasignatura"/>
+
+
+
+        <menuitem id="menu_configuracion"
+                  name="Configuración"
+                  sequence = "5"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_main_silabo_app"/>
+
+        <menuitem id="menu_programaestudios"
+                  name="Programa de Estudios"
+                  sequence = "1"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_configuracion"
+                  action="da_silabo.action_view_programaestudios"/>
+
+        <menuitem id="menu_estadosilabo"
+                  name="Estados del Sílabo"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_configuracion"
+                  action="da_silabo.action_view_estadosilabo"/>
+
+        <menuitem id="menu_estadoplan"
+                  name="Estados del Plan Analítico"
+                  sequence = "3"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_configuracion"
+                  action="da_silabo.action_view_estadoplan"/>
+
+        <menuitem id="menu_acionesplanificadas"
+                  name="Acciones Planificadas"
+                  sequence = "4"
+                  groups = "da_silabo.res_groups_administrador"
+                  parent="da_silabo.menu_configuracion"
+                  action="base.ir_cron_act"/>
+
+        <menuitem id="menu_documentos_revision"
+                  name="Revisión de Documentos"
+                  sequence = "4"
+                  groups = "da_silabo.res_groups_docente_consejo"
+                  parent="da_silabo.menu_main_silabo_app"/>
+
+        <menuitem id="menu_documentosplanDC"
+                  name="Documentos Plan Analítico"
+                  sequence = "1"
+                  groups = "da_silabo.res_groups_docente_consejo"
+                  parent="da_silabo.menu_documentos_revision"
+                  action="da_silabo.action_view_documentosplan_docente_consejo"/>
+
+        <menuitem id="menu_documentossilaboDC"
+                  name="Documentos Sílabo"
+                  sequence = "2"
+                  groups = "da_silabo.res_groups_docente_consejo"
+                  parent="da_silabo.menu_documentos_revision"
+                  action="da_silabo.action_view_documentossilabo_docente_consejo"/>
+
+
+    </data>
+</odoo>

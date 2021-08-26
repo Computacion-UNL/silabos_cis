@@ -1,0 +1,1235 @@
+<odoo>
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_asignacion_asignatura" model="mail.template">
+            <field name="name">Asignación Asignatura</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que ha sido asignado una Asignatura para el desarrollo del sílabo.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que tiene un máximo de cuatro días hábiles para elaborar el Plan Analítico y Sílabo.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+<!--Notificación cuando plan tenga aprobación -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_plan_aprobado" model="mail.template">
+            <field name="name">Validar Aprobación</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que su Plan Analítico ha sido aprobado.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que tiene un máximo de dos días hábiles para elaborar el Sílabo.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+    <!-- NOTIFICAR REVISION DEL PLAN ANALITICO -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_plan_revisar" model="mail.template">
+            <field name="name">Confirmar revisión</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que existe un Plan Analítico que requiere revisión.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que puede asignar un revisor.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+    <!-- NOTIFICAR REVISION DEL PLAN ANALITICO POR EL CONSEJO-->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_plan_revisar_consejo" model="mail.template">
+            <field name="name">Confirmar revisión consejo</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que el Plan Analítico ha sido revisado por el miembro del Consejo Consultivo.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que debe firmar el documento y cargarlo en el sistema para su aprobación.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+    <!--Asignación revisor -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_asignacion_revisor_plan" model="mail.template">
+            <field name="name">Asignación revisor Plan Analítico</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que ha sido designado como revisor de un Plan Analítico.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que tiene que rellenar el campo "Plan Analítico Revisado?" para su aprobación pertinente.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+    <!-- NOTIFICAR REVISION DEL SILABO -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_silabo_revisar" model="mail.template">
+            <field name="name">Confirmar revisión</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que existe un Sílabo que requiere revisión.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que puede asignar un revisor.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+    <!--Notificación cuando plan tenga aprobación -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_silabo_aprobado" model="mail.template">
+            <field name="name">Validar Aprobación</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que su Sílabo ha sido aprobado.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+    <!-- NOTIFICAR REVISION DEL SILABO POR EL CONSEJO-->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_silabo_revisar_consejo" model="mail.template">
+            <field name="name">Confirmar revisión consejo</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que su Sílabo ha sido revisado por el miembro del Consejo Consultivo.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que debe firmar el documento y cargarlo en el sistema para su aprobación.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+    <!--Asignación revisor SILABO-->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_asignacion_revisor_silabos" model="mail.template">
+            <field name="name">Asignación revisor Sílabo</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que ha sido designado como revisor de un Sílabo.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que tiene que rellenar el campo "Plan Analítico Revisado?" para su aprobación pertinente.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+    <!-- NOTIFICAR REVISION DEL SILABO POR EL CONSEJO-->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_silabo_revisar_consejo" model="mail.template">
+            <field name="name">Confirmar revisión consejo</field>
+            <field name="model_id" ref="da_silabo.model_res_users"/>
+            <field name="email_from">${(object.company_id.email | safe)}</field>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.name or 'Usuario'},<br/> <br/>
+                                        Se le comunica que el sílabo ha sido revisado por el miembro del Consejo Consultivo.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que debe firmar el documento y cargarlo en el sistema para su aprobación.
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.company_id.website or ''}">${object.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.company_id.phone or ''}
+                                    ${(object.company_id.street) or ''} ${object.company_id.street2 or ''}
+                                    % if object.company_id.email
+                                        | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    % endif
+                                    % if object.company_id.website
+                                        | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_notificacion_silabo" model="mail.template">
+            <field name="name">Notificacion del sílabo</field>
+            <field name="model_id" ref="da_silabo.model_das_asignatura"/>
+            <!--<field name="email_to" >${}</field>-->
+            <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
+                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        Carrera de Ingeniería en Sistemas
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a Docente,<br/> <br/>
+                                        Se le comunica tiene un plazo para la entrega del sílabo sobre la materia ${object.name}.
+                                        <br/>
+                                        Fecha de entrega del Sílabo:: ${object.fecha_culminacion}.
+                                        <br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Nota: Recuerde que el máximo de días hábiles para elaborar el Plan Analítico y Sílabo son 4.
+                                        <br/>
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    Carrera de Ingeniería en Sistemas
+                                </td></tr>
+
+                                <tr>
+                                <td valign="middle" align="left">
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+
+        <!-- NOTIFICAR REVISION DEL SILABO POR EL CONSEJO-->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_notificacion_silabo_expirado" model="mail.template">
+            <field name="name">Notificación expiración del sílabo</field>
+            <field name="model_id" ref="da_silabo.model_das_silabo"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.responsable.lang}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                <tbody>
+                    <!-- HEADER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle">
+                                    <span style="font-size: 12px;">Universidad Nacional de Loja</span><br/>
+                                    <span style="font-size: 18px; font-weight: bold;">
+                                        ${object.responsable.company_id.name}
+                                    </span>
+                                </td><td valign="middle" align="right">
+                                    <img src="/logo.png?company=${object.responsable.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.responsable.company_id.name or ''}"/>
+                                </td></tr>
+                                <tr><td colspan="2" style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- CONTENT -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        Estimado/a ${object.responsable.name or 'Docente'},<br/> <br/>
+                                        Se le comunica que el sílabo para la asignatura ${object.asignatura_ids.name} ha expirado.<br/>
+                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Comuníquese con la Dirección ${object.responsable.company_id.name} para cualquier inquietud..
+                                        <br/>
+                                        Ingrese con la siguiente información:
+                                        <ul>
+                                            <li>Usuario: ${object.email or ''}</li>
+                                            <li>Portal: <a href="${object.responsable.company_id.website or ''}">${object.responsable.company_id.website or ''}</a></li>
+                                        </ul>
+                                        <br/>
+                                        Saludos cordiales.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;">
+                                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- FOOTER -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                <tr><td valign="middle" align="left">
+                                    ${object.responsable.company_id.name}
+                                </td></tr>
+                                <tr><td valign="middle" align="left" style="opacity: 0.7;">
+                                    ${object.responsable.company_id.phone or ''}
+                                    ${(object.responsable.company_id.street) or ''} ${object.responsable.company_id.street2 or ''}
+                                    % if object.responsable.company_id.email
+                                        | <a href="'mailto:%s' % ${object.responsable.company_id.email}" style="text-decoration:none; color: #454748;">${object.responsable.company_id.email}</a>
+                                    % endif
+                                    % if object.responsable.company_id.website
+                                        | <a href="'%s' % ${object.responsable.company_id.website}" style="text-decoration:none; color: #454748;">
+                                        ${object.responsable.company_id.website}
+                                    </a>
+                                    % endif
+
+                                </td>
+                                    </tr>
+                                <tr>
+                                <td valign="middle" align="left">
+                                    <img src="/logo.png?company=${object.responsable.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.responsable.company_id.name}"/>
+                                </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                </td></tr>
+                <!-- POWERED BY -->
+                <tr><td align="center" style="min-width: 590px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                      <tr><td style="text-align: center; font-size: 13px;">
+                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                      </td></tr>
+                    </table>
+                </td></tr>
+                </table>
+            </field>
+        </record>
+    </data>
+
+</odoo>

@@ -1,0 +1,82 @@
+<odoo>
+    <record id="ir_rule_docente_mostrar_asignaturas_propias" model="ir.rule">
+        <field name="name">Mostrar Asignaturas asignadas</field>
+        <field name="model_id" ref="da_silabo.model_das_asignatura"/>
+        <field name="domain_force">
+            [('user_id','=', user.id)]
+        </field>
+        <field name="groups" eval="[(4, ref('da_silabo.res_groups_docente'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+
+    <record id="ir_rule_docente_mostrar_plaanalitico_propias" model="ir.rule">
+        <field name="name">Mostrar Planes Analiticos propios asignadas</field>
+        <field name="model_id" ref="da_silabo.model_das_plananalitico"/>
+        <field name="domain_force">
+            [(1,'=',1)]
+        </field>
+        <field name="groups" eval="[(4, ref('da_silabo.res_groups_docente')), (4, ref('da_silabo.res_groups_docente_consejo'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+    <record id="ir_rule_docente_mostrar_documentosplan_propias" model="ir.rule">
+        <field name="name">Mostrar Documentos Plan Propios asignadas</field>
+        <field name="model_id" ref="da_silabo.model_das_documentosplan"/>
+        <field name="domain_force">
+            [(1,'=',1)]
+        </field>
+        <field name="groups" eval="[(4, ref('da_silabo.res_groups_docente')), (4, ref('da_silabo.res_groups_docente_consejo'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+    <record id="ir_rule_docente_mostrar_silabos_propias" model="ir.rule">
+        <field name="name">Mostrar Silabos propios</field>
+        <field name="model_id" ref="da_silabo.model_das_silabo"/>
+        <field name="domain_force">
+            [(1,'=',1)]
+        </field>
+        <field name="groups" eval="[(4, ref('da_silabo.res_groups_docente')), (4, ref('da_silabo.res_groups_docente_consejo'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+    <record id="ir_rule_docente_mostrar_documentossilabo_propias" model="ir.rule">
+        <field name="name">Mostrar Documentos Silabos</field>
+        <field name="model_id" ref="da_silabo.model_das_documentossilabo"/>
+        <field name="domain_force">
+            [(1,'=',1)]
+        </field>
+        <field name="groups" eval="[(4, ref('da_silabo.res_groups_docente')), (4,
+        ref('da_silabo.res_groups_docente_consejo'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+    <record id="ir_rule_docente_mostrar_contenidoplan_propias" model="ir.rule">
+        <field name="name">Mostrar Contenido Plan Propios</field>
+        <field name="model_id" ref="da_silabo.model_das_contenidosplan"/>
+        <field name="domain_force">
+            [('plananalitico_id.responsable','=', user.id)]
+        </field>
+        <field name="groups" eval="[(4, ref('da_silabo.res_groups_docente')), (4, ref('da_silabo.res_groups_docente_consejo'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
+</odoo>

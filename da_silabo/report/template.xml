@@ -1,0 +1,769 @@
+<odoo>
+    <!-- TEMPLATE DEL REPORTE DEL PLAN ANALITICO -->
+    <template id="da_silabo.report_plan_analitico">
+        <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="obj">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div style="font-family: 'Open Sans', sans-serif; font-size: 16pt;
+                                color: #000000">
+                                <table class="table table-condensed table-bordered">
+                                        <tr>
+                                            <td style="background-color: #8DBC48;" ><h2 align="center">UNIVERSIDAD NACIONAL DE LOJA</h2></td>
+                                        </tr>
+                                </table>
+                                <h4 align="center">FACULTAD DE LA ENERGÍA, LAS INDUSTRIAS Y LOS RECURSOS NATURALES NO RENOVABLES</h4>
+                                <br/>
+                                <br/>
+                                <div>
+                                    <h4 align="center"><b>CARRERA: <span t-field="obj.responsable.company_id.name"/></b></h4>
+                                    <t t-foreach="request.env['das.ciclo'].search([('asignatura_ids', '=', obj.asignatura_ids.id)])" t-as="ciclo">
+                                        <tbody align="center">
+                                            <td><span t-field="ciclo.name"/> <span t-field="ciclo.paralelo"/></td><br/>
+                                            <td><b> PERIODO ACADÉMICO: </b><span t-field="ciclo.periodoacademico_ids.name"/></td>
+                                        </tbody>
+                                    </t>
+                                    <table class="table table-condensed table-bordered">
+                                        <tr>
+                                            <td style="background-color: #8DBC48;" ><h4><b>PROGRAMA ANALÍTICO DE LA ASIGNATURA: </b><span t-field="obj.asignatura_ids.name"/></h4></td>
+                                        </tr>
+                                   </table>
+                                    <h5 align="right"><b>RESPONSABLE: Ing. <span t-field="obj.responsable.name"/></b></h5>
+                                    <h5 align="right"><b>CORREO ELECTRÓNICO: <span t-field="obj.responsable.email"/></b></h5>
+                                    <h5 align="right"><b>DEPENDENCIA PARA TUTORIAS: <span t-field="obj.dependencia_tutoria"/></b></h5>
+
+                                    <h5 align="center"><b><span t-esc="obj.fecha_elaboracion.strftime('%Y')"/></b></h5>
+
+                                </div>
+                            </div>
+                            <div class="page"/>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>1. DATOS GENERALES DE LA ASIGNATURA</b><br/><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.1 DENOMINACIÓN DE LA ASIGNATURA: <span t-field="obj.asignatura_ids.name"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.2 CÓDIGO DE LA ASIGNATURA</th>
+                                    <th class="text-left" >1.2.1 INSTITUCIONAL: <span t-field="obj.asignatura_ids.codigo_institucional"/></th>
+                                    <th class="text-left" >1.2.1 UNESCO: <span t-field="obj.asignatura_ids.codigo_unesco"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.3 EJE DE FORMACIÓN</th>
+                                    <th class="text-left" ><span t-field="obj.asignatura_ids.eje_formacion"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.4 TIPO DE ASIGNATURA</th>
+                                    <th class="text-left" ><span>1.4.1 OBLIGATORIA: </span></th>
+                                    <th class="text-center" >
+                                        <t t-if="obj.asignatura_ids.tipo == 'obligatorio'">
+                                            <span>X</span>
+                                        </t>
+                                        <t t-if="obj.asignatura_ids.tipo == ''">
+                                            <span> </span>
+                                        </t>
+                                    </th>
+                                    <th class="text-left" ><span>1.4.2 COMPLEMENTARIA: </span></th>
+                                    <th class="text-Ccenter" >
+                                        <t t-if="obj.asignatura_ids.tipo == 'comple'">
+                                            <span>X</span>
+                                        </t>
+                                        <t t-if="obj.asignatura_ids.tipo == ''">
+                                            <span> </span>
+                                        </t>
+                                    </th>
+                                    <th class="text-left" ><span>1.4.3 OPTATIVA: </span></th>
+                                    <th class="text-Ccenter" >
+                                        <t t-if="obj.asignatura_ids.tipo == 'optativa'">
+                                            <span>X</span>
+                                        </t>
+                                        <t t-if="obj.asignatura_ids.tipo == ''">
+                                            <span> </span>
+                                        </t>
+                                    </th>
+                                    <th class="text-left" ><span>1.4.4 OTRA: </span></th>
+                                    <th class="text-center" >
+                                        <t t-if="obj.asignatura_ids.tipo == 'otra'">
+                                            <span>X</span>
+                                        </t>
+                                        <t t-if="obj.asignatura_ids.tipo == ''">
+                                            <span> </span>
+                                        </t>
+                                    </th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.5 NUMERO DE CRÉDITOS</th>
+                                    <th class="text-left" >1.5.1 TOTAL: <span t-field="obj.asignatura_ids.credito_totales"/></th>
+                                    <th class="text-left" >1.5.2 TEÓRICOS: <span t-field="obj.asignatura_ids.credito_teoricos"/></th>
+                                    <th class="text-left" >1.5.3 PRÁCTICOS: <span t-field="obj.asignatura_ids.credito_practicos"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.6 NUMERO DE HORAS DE LA ASIGNATURA</th>
+                                    <th class="text-left" >1.6.1 SEMANAL: <span t-field="obj.asignatura_ids.n_horas_semanales"/></th>
+                                    <th class="text-left" >1.6.2 EN EL PERÍODO: <span t-field="obj.asignatura_ids.n_horas_periodo"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.7 PRERREQUISITOS (SI)</th>
+                                    <th class="text-left" >CÓDIGO INSTITUCIONAL</th>
+                                    <th class="text-left" >CÓDIGO UNESCO</th>
+                                    <th class="text-left" >ASIGNATURA</th>
+                                </thead>
+                                <t t-foreach="obj.asignatura_ids.prerrequisitos" t-as="prerre">
+                                    <tbody>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><span t-field="prerre.codigo_institucional"/></td>
+                                        <td class="text-center"><span t-field="prerre.codigo_unesco"/></td>
+                                        <td class="text-center"><span t-field="prerre.name"/></td>
+                                    </tbody>
+                                </t>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.8 CORREQUISITOS (NO)</th>
+                                    <th class="text-left" >CÓDIGO INSTITUCIONAL</th>
+                                    <th class="text-left" >CÓDIGO UNESCO</th>
+                                    <th class="text-left" >ASIGNATURA</th>
+                                </thead>
+                                <t t-foreach="obj.asignatura_ids.correquisitos" t-as="correq">
+                                    <tbody>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><span t-field="correq.codigo_institucional"/></td>
+                                        <td class="text-center"><span t-field="correq.codigo_unesco"/></td>
+                                        <td class="text-center"><span t-field="correq.name"/></td>
+                                    </tbody>
+                                </t>
+                            </table>
+                            <div class="page"/>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>2. DESCRIPCIÓN DE LA ASIGNATURA</b><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" ><span t-raw="obj.contrib_formacion_profesional"/></th>
+                                </thead>
+                            </table>
+                            <span><b>3. OBJETIVOS DE LA ASIGNATURA</b><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" ><span t-raw="obj.objetivos"/></th>
+                                </thead>
+                            </table>
+
+                            <div class="page"/>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>4. CONTENIDOS Y ORGANIZACIÓN DEL APRENDIZAJE DE LA ASIGNATURA</b></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-center" >NRO. DE UNIDAD</th>
+                                    <th class="text-center" >NOMBRE DE LA UNIDAD</th>
+                                    <th class="text-center" >CONTENIDOS MINIMOS</th>
+                                    <th class="text-center" >NRO. DE HORAS CONTACTO DOC.</th>
+                                    <th class="text-center" >NRO. DE HORAS TUTORIAS</th>
+                                    <th class="text-center" >NRO. DE HORAS PRACTICAS</th>
+                                    <th class="text-center" >NRO. DE HORAS AUTÓNOMAS</th>
+                                </thead>
+                                <t t-foreach="request.env['das.contenidosplan'].search([('plananalitico_id', '=', obj.id)])" t-as="contenido">
+                                    <tbody>
+                                        <td class="text-center"><span t-field="contenido.numero"/></td>
+                                        <td class="text-center"><span t-field="contenido.nombre_unidad"/></td>
+                                        <td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>
+                                        <td class="text-center"><span t-field="contenido.horas_profesor"/></td>
+                                        <td class="text-center"><span t-field="contenido.horas_tutorias"/></td>
+                                        <td class="text-center"><span t-field="contenido.horas_practicas"/></td>
+                                        <td class="text-center"><span t-field="contenido.horas_autonomo"/></td>
+                                    </tbody>
+                                </t>
+                            </table>
+
+                            <div class="page"/>
+                            <span><b>5. RESULTADOS DE APRENDIZAJE DE LA ASIGNATURA</b></span><br/>
+                            <span t-raw="obj.resultados_aprendizaje"/>
+
+                            <br/><br/>
+                            <span><b>6. ESTRATEGIAS METODOLÓGICAS</b><br/><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left"><span t-raw="obj.estrategia_metodologicas"/></th>
+                                </thead>
+                            </table>
+                            <div class="page"/>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>7. CRITERIOS DE EVALUACIÓN DE LA ASIGNATURA</b><br/><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-center" >PARÁMETROS (INSTRUMENTOS) DE EVALUACIÓN</th>
+                                    <th class="text-center" >PRIMERA EVALUACIÓN % (PUNTOS)</th>
+                                    <th class="text-center" >SEGUNDA EVALUACIÓN % (PUNTOS)</th>
+                                    <th class="text-center" >TERCERA EVALUACIÓN % (PUNTOS)</th>
+                                </thead>
+                                <t t-foreach="request.env['das.criteriosevaluacion'].search([('plananalitico_id', '=', obj.id)])" t-as="criterio">
+                                    <tbody>
+                                        <td class="text-center"><span t-raw="criterio.parametros_evaluacion"/></td>
+                                        <td class="text-center"><span t-field="criterio.evaluacion1"/>%</td>
+                                        <td class="text-center"><span t-field="criterio.evaluacion2"/>%</td>
+                                        <td class="text-center"><span t-field="criterio.evaluacion3"/>%</td>
+                                    </tbody>
+                                </t>
+                                <tbody>
+                                    <td class="text-center"><span>TOTAL</span></td>
+                                    <td class="text-center"><span>100%</span></td>
+                                    <td class="text-center"><span>100%</span></td>
+                                    <td class="text-center"><span>100%</span></td>
+                                </tbody>
+                            </table>
+
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>8. BIBLIOGRAFÍA</b><br/><br/></span>
+                            <span><b>8.1 Física:</b><br/><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-center" >AUTOR</th>
+                                    <th class="text-center" >TÍTULO DEL LIBRO</th>
+                                    <!--<th class="text-center" >CONTENIDOS MINIMOS</th>-->
+                                    <th class="text-center" >CIUDAD, PAÍS DE PUBLICACIÓN</th>
+                                    <th class="text-center" >EDICIÓN</th>
+                                    <th class="text-center" >AÑO DE PUBLICACIÓN</th>
+                                    <th class="text-center" >EDITORIAL</th>
+                                    <th class="text-center" >ISBN</th>
+                                </thead>
+                                <t t-foreach="obj.bibliografia_ids" t-as="biblio">
+                                    <t t-if="biblio.tipo == 'fisica'">
+                                        <tbody>
+                                            <td class="text-center"><span t-field="biblio.autor"/></td>
+                                            <td class="text-center"><span t-field="biblio.name"/></td>
+                                            <!--<td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>-->
+                                            <td class="text-center"><span t-field="biblio.ciudad_pais"/></td>
+                                            <td class="text-center"><span t-field="biblio.edicion"/></td>
+                                            <td class="text-center"><span t-field="biblio.anio_publicacion"/></td>
+                                            <td class="text-center"><span t-field="biblio.editorial"/></td>
+                                            <td class="text-center"><span t-field="biblio.isbn"/></td>
+
+                                        </tbody>
+                                        <t t-if="biblio.direccion_electr != ''">
+                                            <tbody>
+                                                <td class="text-center">URL</td>
+                                                 <td class="text-center" ><span t-field="biblio.direccion_electr"/></td>
+                                            </tbody>
+                                        </t>
+                                    </t>
+                                </t>
+                            </table>
+                            <div class="page"/>
+                            <!--<p style="page-break-after:always;">   </p>-->
+                            <span><b>8.2 Virtual:</b><br/><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-center" >AUTOR</th>
+                                    <th class="text-center" >TÍTULO DEL LIBRO</th>
+                                    <!--<th class="text-center" >CONTENIDOS MINIMOS</th>-->
+                                    <th class="text-center" >DIRECCIÓN ELECTRÓNICA</th>
+                                    <th class="text-center" >AÑO DE PUBLICACIÓN</th>
+                                    <th class="text-center" >EDITORIAL</th>
+                                    <th class="text-center" >ISBN</th>
+                                </thead>
+                                <t t-foreach="obj.bibliografia_ids" t-as="biblio">
+                                    <t t-if="biblio.tipo == 'virtual'">
+                                        <tbody>
+                                            <td class="text-center"><span t-field="biblio.autor"/></td>
+                                            <td class="text-center"><span t-field="biblio.name"/></td>
+                                            <!--<td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>-->
+                                            <td class="text-center"><span t-field="biblio.direccion_electr"/></td>
+                                            <td class="text-center"><span t-field="biblio.anio_publicacion"/></td>
+                                            <td class="text-center"><span t-field="biblio.editorial"/></td>
+                                            <td class="text-center"><span t-field="biblio.isbn"/></td>
+
+                                        </tbody>
+                                    </t>
+                                </t>
+                            </table>
+                            <div class="page"/>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>9. ELABORACIÓN Y APROBACIÓN</b><br/><br/></span>
+                            <p>DOENTE(S) RESPONSABLE(S) DE LA ELABORACIÓN DEL PLAN ANALITICO:</p>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" ><span t-field="obj.responsable.name"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <span>6.1 FECHA DE ELABORACIÓN: </span><th class="text-left" ><span t-field="obj.fecha_elaboracion"/></th>
+                                </thead>
+                            </table>
+                            <p>6.2 FIRMAS DE APROBACIÓN</p>
+
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <t t-foreach="request.env['res.users'].search([])" t-as="admin">
+                                        <t t-if="admin.has_group('da_silabo.res_groups_administrador')">
+                                    <th class="text-center" ><br/><br/><br/><br/><br/>
+                                        f)________________________<br/>
+                                        MGS. <span t-field="admin.name"/><br/>
+                                        <span t-field="admin.function"/>
+                                        </th>
+                                    <th class="text-center" ><br/><br/><br/><br/><br/>
+                                        f)________________________<br/>
+                                        MGS. <span t-field="obj.responsable.name"/><br/>
+                                        <span t-field="obj.responsable.function"/>
+                                        </th>
+                                            </t>
+                                    </t>
+                                </thead>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+    </template>
+
+    <!-- TEMPLATE DEL REPORTE DEL SILABO -->
+    <template id="da_silabo.report_silabo">
+        <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="obj">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div style="font-family: 'Open Sans', sans-serif; font-size: 16pt;
+                                color: #000000">
+                                <table class="table table-condensed table-bordered">
+                                        <tr>
+                                            <td style="background-color: #8DBC48;" ><h2 align="center">UNIVERSIDAD NACIONAL DE LOJA</h2></td>
+                                        </tr>
+                                </table>
+                                <h4 align="center">FACULTAD DE LA ENERGÍA, LAS INDUSTRIAS Y LOS RECURSOS NATURALES NO RENOVABLES</h4>
+                                <br/>
+                                <br/>
+                                <div>
+                                    <h4 align="center"><b>CARRERA: <span t-field="obj.responsable.company_id.name"/></b></h4>
+                                    <t t-foreach="request.env['das.ciclo'].search([('asignatura_ids', '=', obj.plananalitico_id.asignatura_ids.id)])" t-as="ciclo">
+                                        <tbody align="center">
+                                            <td><span t-field="ciclo.name"/> <span t-field="ciclo.paralelo"/></td><br/>
+                                            <td><b> PERIODO ACADÉMICO: </b><span t-field="ciclo.periodoacademico_ids.name"/></td>
+                                        </tbody>
+                                    </t>
+                                    <table class="table table-condensed table-bordered">
+                                        <tr>
+                                            <td style="background-color: #8DBC48;" ><h4><b>SILABO: </b><span t-field="obj.plananalitico_id.asignatura_ids.name"/></h4></td>
+                                        </tr>
+                                   </table>
+                                    <h5 align="right"><b>RESPONSABLE: Ing. <span t-field="obj.responsable.name"/></b></h5>
+                                    <h5 align="right"><b>CORREO ELECTRÓNICO: <span t-field="obj.responsable.email"/></b></h5>
+                                    <h5 align="right"><b>DEPENDENCIA PARA TUTORIAS: <span t-field="obj.plananalitico_id.dependencia_tutoria"/></b></h5>
+
+                                    <h5 align="center"><b><span t-esc="obj.fecha_elaboracion.strftime('%Y')"/></b></h5>
+
+                                </div>
+                                <br/>
+                             </div>
+                            <div class="page"/>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>1. DATOS GENERALES DE LA ASIGNATURA</b><br/><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.1 DENOMINACIÓN DE LA ASIGNATURA: <span t-field="obj.plananalitico_id.asignatura_ids.name"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.2 CÓDIGO DE LA ASIGNATURA</th>
+                                    <th class="text-left" >1.2.1 INSTITUCIONAL: <span t-field="obj.plananalitico_id.asignatura_ids.codigo_institucional"/></th>
+                                    <th class="text-left" >1.2.1 UNESCO: <span t-field="obj.plananalitico_id.asignatura_ids.codigo_unesco"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.3 EJE DE FORMACIÓN</th>
+                                    <th class="text-left" ><span t-field="obj.plananalitico_id.asignatura_ids.eje_formacion"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.4 TIPO DE ASIGNATURA</th>
+                                    <th class="text-left" ><span>1.4.1 OBLIGATORIA: </span></th>
+                                    <th class="text-center" >
+                                        <t t-if="obj.plananalitico_id.asignatura_ids.tipo == 'obligatorio'">
+                                            <span>X</span>
+                                        </t>
+                                        <t t-if="obj.plananalitico_id.asignatura_ids.tipo == ''">
+                                            <span> </span>
+                                        </t>
+                                    </th>
+                                    <th class="text-left" ><span>1.4.2 COMPLEMENTARIA: </span></th>
+                                    <th class="text-Ccenter" >
+                                        <t t-if="obj.plananalitico_id.asignatura_ids.tipo == 'comple'">
+                                            <span>X</span>
+                                        </t>
+                                        <t t-if="obj.plananalitico_id.asignatura_ids.tipo == ''">
+                                            <span> </span>
+                                        </t>
+                                    </th>
+                                    <th class="text-left" ><span>1.4.3 OPTATIVA: </span></th>
+                                    <th class="text-Ccenter" >
+                                        <t t-if="obj.plananalitico_id.asignatura_ids.tipo == 'optativa'">
+                                            <span>X</span>
+                                        </t>
+                                        <t t-if="obj.plananalitico_id.asignatura_ids.tipo == ''">
+                                            <span> </span>
+                                        </t>
+                                    </th>
+                                    <th class="text-left" ><span>1.4.4 OTRA: </span></th>
+                                    <th class="text-center" >
+                                        <t t-if="obj.plananalitico_id.asignatura_ids.tipo == 'otra'">
+                                            <span>X</span>
+                                        </t>
+                                        <t t-if="obj.plananalitico_id.asignatura_ids.tipo == ''">
+                                            <span> </span>
+                                        </t>
+                                    </th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.5 NUMERO DE CRÉDITOS</th>
+                                    <th class="text-left" >1.5.1 TOTAL: <span t-field="obj.plananalitico_id.asignatura_ids.credito_totales"/></th>
+                                    <th class="text-left" >1.5.2 TEÓRICOS: <span t-field="obj.plananalitico_id.asignatura_ids.credito_teoricos"/></th>
+                                    <th class="text-left" >1.5.3 PRÁCTICOS: <span t-field="obj.plananalitico_id.asignatura_ids.credito_practicos"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.6 NUMERO DE HORAS DE LA ASIGNATURA</th>
+                                    <th class="text-left" >1.6.1 SEMANAL: <span t-field="obj.plananalitico_id.asignatura_ids.n_horas_semanales"/></th>
+                                    <th class="text-left" >1.6.2 EN EL PERÍODO: <span t-field="obj.plananalitico_id.asignatura_ids.n_horas_periodo"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.7 PRERREQUISITOS (SI)</th>
+                                    <th class="text-left" >CÓDIGO INSTITUCIONAL</th>
+                                    <th class="text-left" >CÓDIGO UNESCO</th>
+                                    <th class="text-left" >ASIGNATURA</th>
+                                </thead>
+                                <t t-foreach="obj.plananalitico_id.asignatura_ids.prerrequisitos" t-as="prerre">
+                                    <tbody>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><span t-field="prerre.codigo_institucional"/></td>
+                                        <td class="text-center"><span t-field="prerre.codigo_unesco"/></td>
+                                        <td class="text-center"><span t-field="prerre.name"/></td>
+                                    </tbody>
+                                </t>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" >1.8 CORREQUISITOS (NO)</th>
+                                    <th class="text-left" >CÓDIGO INSTITUCIONAL</th>
+                                    <th class="text-left" >CÓDIGO UNESCO</th>
+                                    <th class="text-left" >ASIGNATURA</th>
+                                </thead>
+                                <t t-foreach="obj.plananalitico_id.asignatura_ids.correquisitos" t-as="correq">
+                                    <tbody>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><span t-field="correq.codigo_institucional"/></td>
+                                        <td class="text-center"><span t-field="correq.codigo_unesco"/></td>
+                                        <td class="text-center"><span t-field="correq.name"/></td>
+                                    </tbody>
+                                </t>
+                            </table>
+                            <div class="page"/>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>2. DATOS ESPECÍFICOS DE LA ASIGNATURA</b><br/></span>
+                            <span>2.1 CONTRIBUCIÓN DE LA ASIGNATURA A LA FORMACIÓN PROFESIONAL (PERFIL DE EGRESO)</span><br/><br/>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" ><span t-raw="obj.plananalitico_id.contrib_formacion_profesional"/></th>
+                                </thead>
+                            </table>
+                            <span>2.2 OBJETIVOS DE LA ASIGNATURA</span><br/>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" ><span t-raw="obj.plananalitico_id.objetivos"/></th>
+                                </thead>
+                            </table>
+                            <span>2.2 RESULTADOS DE APRENDIZAJE (POR CADA UNO)</span><br/>
+                            <span t-raw="obj.plananalitico_id.resultados_aprendizaje"/>
+                            <br/><br/>
+                            <div class="page"/>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>3. ESTRUCTURA DE LA ASIGNATURA</b><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-center" >UNIDAD/TEMA</th>
+                                    <th class="text-center" >NRO. HORAS</th>
+                                    <th class="text-center" >CONTENIDOS TEÓRICOS <br/>(SISTEMA/CONTENIDOS)</th>
+                                    <th class="text-center" >NRO. DE HORAS</th>
+                                    <th class="text-center" >ACTIVIDADES PRACTICAS <br/>(HABILIDADES A DESARROLLAR EN LA ASIGNATURA)</th>
+                                    <th class="text-center" >NRO. DE HORAS</th>
+                                    <th class="text-center" >ACTIVIDADES DE APRENDIZAJE AUTÓNOMO</th>
+                                    <th class="text-center" >NRO. DE HORAS</th>
+                                    <th class="text-center" >ESTRATEGIAS DE EVALUACIÓN</th>
+                                </thead>
+                                <t t-foreach="request.env['das.unidad'].search([('silabo_id', '=', obj.id)])" t-as="unidad">
+                                    <tbody>
+                                        <td class="text-center"><span t-field="unidad.name"/></td>
+                                        <td class="text-center"><span t-field="unidad.horas"/></td>
+                                        <td class="text-center"><span t-raw="unidad.contenido_teorico"/></td>
+                                        <td class="text-center"><span t-field="unidad.horas_teorico"/></td>
+                                        <td class="text-center"><span t-raw="unidad.actividades_practicas"/></td>
+                                        <td class="text-center"><span t-field="unidad.horas_practicas"/></td>
+                                        <td class="text-center"><span t-raw="unidad.aprendizaje_autonomo"/></td>
+                                        <td class="text-center"><span t-field="unidad.horas_autonomo"/></td>
+                                        <td class="text-center"><span t-raw="unidad.estrategias_evaluacion"/></td>
+                                    </tbody>
+                                </t>
+                            </table>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>ACTITUDES Y VALORES A DESARROLAR EN LA ASIGNATURA</b><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" ><span t-raw="obj.valores"/></th>
+                                </thead>
+                            </table>
+                            <span><b>ESTRATEGIAS METODOLOGICAS</b><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" ><span t-raw="obj.plananalitico_id.estrategia_metodologicas"/></th>
+                                </thead>
+                            </table>
+                            <span><b>RECURSOS/MATERIALES DIDACTICOS</b><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-left" ><span t-raw="obj.recursos"/></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-center" ><span><b>TIPO DE APRENDIZAJE</b></span></th>
+                                </thead>
+                            </table>
+                            <table class="table table-condensed table-bordered">
+                                <t t-foreach="obj.tipoaprendizaje_ids" t-as="tipo">
+                                    <tbody>
+                                        <th class="text-left" ><span t-field="tipo.name"/></th>
+                                        <th> X </th>
+                                    </tbody>
+                                </t>
+                            </table>
+                            <p style="page-break-after:always;">   </p>
+                            <span><b>4. HORARIO DE CLASE</b><br/></span>
+                            <span t-raw="obj.horario"/>
+                            <br/><br/>
+                            <span><b>5. DESARROLLO DE LA ASIGNATURA</b><br/></span>
+                            <span t-raw="obj.horario"/>
+                            <t t-foreach="request.env['das.sesion'].search([('silabo_id', '=', obj.id)])" t-as="sesion">
+                            <!--<t t-foreach="obj.unidad_ids.sesion_ids" t-as="sesion">-->
+                                <span><b>Semana <t t-esc="sesion.name"/>: </b> <t t-esc="sesion.fecha_inicio"/> al <t t-esc="sesion.fecha_fin"/><br/><br/></span>
+                                <br/>
+                                <table class="table table-condensed table-bordered">
+                                    <thead>
+                                        <th class="text-center">DURACIÓN DE CADA SESIÓN</th>
+                                        <th class="text-center">CONTENIDOS Y ACTIVIDADES DE ESTUDIO TEÓRICO</th>
+                                        <th class="text-center">ACTIVIDADES PRÁCTICAS</th>
+                                        <th class="text-center">ACTIVIDADES DE TRABAJO AUTÓNOMO</th>
+                                        <th class="text-center">ESCENARIO DE APRENDIZAJE</th>
+                                    </thead>
+                                    <tbody>
+                                        <td class="text-left"><span t-field="sesion.duracion"/></td>
+                                        <td class="text-left"><span t-raw="sesion.contenidos"/></td>
+                                        <td class="text-left"><span t-raw="sesion.actividades_practicas"/></td>
+                                        <td class="text-left"><span t-raw="sesion.trabajo_autonomo"/></td>
+                                        <td class="text-left"><span t-raw="sesion.escenario_aprendizaje"/></td>
+                                   </tbody>
+                                </table>
+                            </t>
+                            <br/><br/>
+                            <span><b>6. CRITERIOS DE EVALUACIÓN DE LA ASIGNATURA</b><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-center" >PARÁMETROS (INSTRUMENTOS) DE EVALUACIÓN</th>
+                                    <th class="text-center" >PRIMERA EVALUACIÓN (10 PUNTOS)</th>
+                                    <th class="text-center" >SEGUNDA EVALUACIÓN (10 PUNTOS)</th>
+                                    <th class="text-center" >TERCERA EVALUACIÓN (10 PUNTOS)</th>
+                                </thead>
+                                <t t-foreach="obj.plananalitico_id.criterioevaluacion_id" t-as="criter">
+                                    <tbody>
+                                        <td class="text-center"><span t-raw="criter.parametros_evaluacion"/></td>
+                                        <td class="text-center"><span t-field="criter.evaluacion1"/></td>
+                                        <td class="text-center"><span t-field="criter.evaluacion2"/></td>
+                                        <td class="text-center"><span t-field="criter.evaluacion3"/></td>
+                                    </tbody>
+                                </t>
+                                <tbody>
+                                <td class="text-center"><span>TOTAL</span></td>
+                                <td class="text-center"><span>(10 PUNTOS)</span></td>
+                                <td class="text-center"><span>(10 PUNTOS)</span></td>
+                                <td class="text-center"><span>(10 PUNTOS)</span></td>
+                            </tbody>
+                        </table>
+                        <div class="page"/>
+                        <p style="page-break-after:always;">   </p>
+                        <span><b>7. BIBLIOGRAFÍA</b><br/><br/></span>
+                        <span><b>7.1 Física:</b><br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-center" >AUTOR</th>
+                                <th class="text-center" >TÍTULO DEL LIBRO</th>
+                                <!--<th class="text-center" >CONTENIDOS MINIMOS</th>-->
+                                <th class="text-center" >CIUDAD, PAÍS DE PUBLICACIÓN</th>
+                                <th class="text-center" >EDICIÓN</th>
+                                <th class="text-center" >AÑO DE PUBLICACIÓN</th>
+                                <th class="text-center" >EDITORIAL</th>
+                                <th class="text-center" >ISBN</th>
+                            </thead>
+                            <t t-foreach="obj.bibliografia_ids" t-as="bibi">
+                                <t t-if="bibi.tipo == 'fisica'">
+                                    <tbody>
+                                        <td class="text-center"><span t-field="bibi.autor"/></td>
+                                        <td class="text-center"><span t-field="bibi.name"/></td>
+                                        <!--<td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>-->
+                                        <td class="text-center"><span t-field="bibi.ciudad_pais"/></td>
+                                        <td class="text-center"><span t-field="bibi.edicion"/></td>
+                                        <td class="text-center"><span t-field="bibi.anio_publicacion"/></td>
+                                        <td class="text-center"><span t-field="bibi.editorial"/></td>
+                                        <td class="text-center"><span t-field="bibi.isbn"/></td>
+
+                                    </tbody>
+                                    <t t-if="bibi.direccion_electr != ''">
+                                        <tbody>
+                                            <td class="text-center">URL</td>
+                                             <td class="text-center" ><span t-field="bibi.direccion_electr"/></td>
+                                        </tbody>
+                                    </t>
+                                </t>
+                            </t>
+                        </table>
+                        <div class="page"/>
+                        <p style="page-break-after:always;">   </p>
+                        <span><b>7.2 Virtual:</b><br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-center" >AUTOR</th>
+                                <th class="text-center" >TÍTULO DEL LIBRO</th>
+                                <!--<th class="text-center" >CONTENIDOS MINIMOS</th>-->
+                                <th class="text-center" >DIRECCIÓN ELECTRÓNICA</th>
+                                <th class="text-center" >AÑO DE PUBLICACIÓN</th>
+                                <th class="text-center" >EDITORIAL</th>
+                                <th class="text-center" >ISBN</th>
+                            </thead>
+                            <t t-foreach="obj.bibliografia_ids" t-as="bib">
+                                <t t-if="bib.tipo == 'virtual'">
+                                    <tbody>
+                                        <td class="text-center"><span t-field="bib.autor"/></td>
+                                        <td class="text-center"><span t-field="bib.name"/></td>
+                                        <!--<td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>-->
+                                        <td class="text-center"><span t-field="bib.direccion_electr"/></td>
+                                        <td class="text-center"><span t-field="bib.anio_publicacion"/></td>
+                                        <td class="text-center"><span t-field="bib.editorial"/></td>
+                                        <td class="text-center"><span t-field="bib.isbn"/></td>
+
+                                    </tbody>
+                                </t>
+                            </t>
+                        </table>
+                        <div class="page"/>
+                        <p style="page-break-after:always;">   </p>
+                        <span><b>8. PERFIL DE (LA) PROFESOR (A) DE LA ASIGNATURA</b><br/><br/></span>
+                        <span>8.1. TÍTULO (S) DE TERCER NIVEL:<br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-left" ><span t-field="obj.perfil_ids.titulo_tn"/></th>
+                            </thead>
+                        </table>
+                        <span>8.2. TÍTULO (S) DE CUARTO NIVEL:<br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-left" ><span t-field="obj.perfil_ids.titulo_cn"/></th>
+                            </thead>
+                        </table>
+                        <span>8.3. HABILIDADES QUE POSEE:<br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-left" ><span t-raw="obj.perfil_ids.habilidades"/></th>
+                            </thead>
+                        </table>
+                        <span>8.4. ACTITUDES:<br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-left" ><span t-raw="obj.perfil_ids.actitudes"/></th>
+                            </thead>
+                        </table>
+                        <br/><br/>
+                        <span><b>9. RELACIÓN DE LOS CONTENIDOS DE LA ASIGNATURA CON LOS RESULTADOS DE APRENDIZAJE</b><br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-center" >CONTENIDOS DE LA ASIGNATURA</th>
+                                <th class="text-center" >CONTRIBUCIÓN</th>
+                                <th class="text-center" >RESULTADOS DE APRENDIZAJE </th>
+                            </thead>
+                            <t t-foreach="obj.contribucion_ids" t-as="contribucion">
+                                <tbody>
+                                    <td class="text-center"><span t-esc="contribucion.contenidos_asignatura"/></td>
+                                    <td class="text-center"><span t-field="contribucion.contribucion"/></td>
+                                    <td class="text-center"><span t-raw="contribucion.resultados_aprendizaje"/></td>
+                                </tbody>
+                            </t>
+                        </table>
+                        <span><b>10. RELACIÓN DE LOS RESULTADOS DE APRENDIZAJE DEL PERFIL DE EGRESO DE LA CARRERA</b><br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-center" >RESULTADOS DE APRENDIZAJE DE LA ASIGNATURA</th>
+                                <th class="text-center" >CONTRIBUCIÓN</th>
+                                <th class="text-center" >PERFIL DE EGRESO DE LA CARRERA</th>
+                            </thead>
+                            <t t-foreach="obj.perfilegreso_ids" t-as="contribuc">
+                                <tbody>
+                                    <td class="text-center"><span t-raw="contribuc.resultado_aprendizajes"/></td>
+                                    <td class="text-center"><span t-field="contribuc.contribucion"/></td>
+                                    <td class="text-center"><span t-raw="contribuc.perfil_egreso"/></td>
+                                </tbody>
+                            </t>
+                        </table>
+                        <br/><br/>
+                        <span><b>11. ELABORACIÓN Y APROBACIÓN</b><br/><br/></span>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-left" >11.1 DOCENTE (S) RESPONSABLE (S) DE LA ELABORACIÓN DEL SÍLABO: <span t-raw="obj.responsable.name"/></th>
+                            </thead>
+                        </table>
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <th class="text-left" >11.2 FECHA DE ELABORACIÓN: <span t-esc="obj.fecha_elaboracion"/></th>
+                                <th class="text-left" >VERSIÓN: <span t-field="obj.version"/></th>
+                                <th class="text-left" >DOCENTE RESPONSABLE: <span t-field="obj.responsable.name"/></th>
+                            </thead>
+                        </table>
+
+                        <table class="table table-condensed table-bordered">
+                            <thead>
+                                <t t-foreach="request.env['res.users'].search([])" t-as="admin">
+                                    <t t-if="admin.has_group('da_silabo.res_groups_administrador')">
+                                        <th class="text-center" ><br/><br/><br/><br/><br/>
+                                            f)________________________<br/>
+                                            <span>GESTOR DE LA CARRERA (E)</span><br/>
+                                            ING. <span t-field="admin.name"/> MG.SC.
+                                            </th>
+                                        <th class="text-center" ><br/><br/><br/><br/><br/>
+                                            f)________________________<br/>
+                                            <span>DOCENTE RESPONSABLE</span><br/>
+                                            ING. <span t-field="obj.responsable.name"/> MG.SC.
+                                        </th>
+                                    </t>
+                                </t>
+                            </thead>
+                        </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+    </template>
+</odoo>

@@ -1,0 +1,34 @@
+<odoo>
+    <record id="da_silabo.paperformat_portrait_a4_mdas" model="report.paperformat">
+            <field name="name">Formato A4 Informe MDAS</field>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="default" eval="False" />
+            <field name="dpi" eval="90"/>
+            <field name="margin_top" eval="40"/>
+            <field name="margin_right" eval="20"/>
+            <field name="margin_bottom" eval="30"/>
+            <field name="margin_left" eval="20"/>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing" eval="30"/>
+    </record>
+
+    <report id="da_silabo.action_report_plan_analitico"
+            string="Informe de Plan Analítico"
+            model="das.plananalitico"
+            report_type="qweb-pdf"
+            paperformat="da_silabo.paperformat_portrait_a4_mdas"
+            groups = "da_silabo.res_groups_administrador,da_silabo.res_groups_docente,da_silabo.res_groups_docente_consejo"
+            name="da_silabo.report_plan_analitico"
+            print_report_name="'%s' % (object.name)"/>
+
+    <report id="da_silabo.action_report_silabo"
+            string="Informe del Silabo"
+            model="das.silabo"
+            report_type="qweb-pdf"
+            paperformat="da_silabo.paperformat_portrait_a4_mdas"
+            groups = "da_silabo.res_groups_administrador,da_silabo.res_groups_docente,da_silabo.res_groups_docente_consejo"
+            name="da_silabo.report_silabo"
+            print_report_name="'silabo_%s' % (object.plananalitico_id.asignatura_ids.name)"/>
+
+</odoo>
