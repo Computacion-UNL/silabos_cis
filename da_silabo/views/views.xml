@@ -716,10 +716,6 @@
             </field>
         </record>
 
-
-
-
-
         <!--Vista Form Mis Asignaturas-->
         <record id="view_form_misasignatura" model="ir.ui.view">
             <field name="name">view.form.das.misasignatura</field>
@@ -1170,8 +1166,6 @@
             </field>
         </record>
 
-
-
         <!--Vista Form Documentos Plan Analitico-->
         <record id="view_form_documentosplan" model="ir.ui.view">
             <field name="name">view.form.das.documentosplan</field>
@@ -1458,12 +1452,10 @@
                             <group><field name="isbn" /></group>
                             <group><field name="direccion_electr" /></group>
                         </group>
-
                     </sheet>
                 </form>
             </field>
         </record>
-
 
         <!--Vista Form Estados Plan analitico-->
         <record id="view_form_estadoplan" model="ir.ui.view">
@@ -1536,7 +1528,6 @@
 
                             <group><field name="puntaje_total" /></group>
                         </group>
-
                     </sheet>
                 </form>
             </field>
