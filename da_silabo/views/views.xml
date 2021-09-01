@@ -2476,7 +2476,6 @@
         <menuitem id="menu_main_silabo_app"
                    name="Silabos CIS"
                    web_icon="da_silabo/static/description/icon.png"
-                   parent=""
                    action="da_silabo.action_view_asignatura"/>
 
         <menuitem id="menu_usuario"
