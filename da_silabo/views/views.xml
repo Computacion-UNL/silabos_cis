@@ -2477,7 +2477,7 @@
                    name="Silabos CIS"
                    web_icon="da_silabo/static/description/icon.png"
                    action="da_silabo.action_view_asignatura"/>
-        
+
         <menuitem id="menu_usuario"
                   name="Usuarios"
                   sequence = "1"
