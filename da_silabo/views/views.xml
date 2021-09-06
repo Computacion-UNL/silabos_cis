@@ -862,8 +862,8 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_confirm" type="object" string="Confirmar" class="oe_highlight"/>
-                        <button name="action_return" type="object" string="Volver"  class="oe_highlight"/>
+                        <button name="action_confirm" type="object" string="Finalizar" class="oe_highlight"/>
+                        <button name="action_return" type="object" string="Cambiar a Borrador"  class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="inicio,fin"/>
                     </header>
                     <sheet>
@@ -963,8 +963,8 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_confirm" type="object" string="Confirmar" class="oe_highlight"/>
-                        <button name="action_return" type="object" string="Volver"  class="oe_highlight"/>
+                        <button name="action_confirm" type="object" string="Finalizar" class="oe_highlight"/>
+                        <button name="action_return" type="object" string="Cambiar a Borrador"  class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="inicio,fin"/>
                     </header>
                     <sheet>
