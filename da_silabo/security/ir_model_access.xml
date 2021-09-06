@@ -110,7 +110,7 @@
         <field name="perm_create" eval="0"/>
         <field name="perm_write" eval="0"/>
         <field name="perm_unlink" eval="0"/>
-        <field name="perm_read" eval="0"/>
+        <field name="perm_read" eval="1"/>
     </record>
 
     <record id="model_access_asignatura_C" model="ir.model.access">
