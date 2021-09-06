@@ -218,9 +218,9 @@
                                     <field name="estrategias_evaluacion"/>
                                 </group>
 
-                                <group>
+                                <!--<group>
                                     <field name="numero_sesiones"/>
-                                </group>
+                                </group>-->
                     </sheet>
                     <!--<div class="oe_chatter">
                             <field name="message_ids" widget="mail_thread" groups="plan_mejoras.res_groups_administrador,plan_mejoras.res_groups_docente_consejo"/>
@@ -288,6 +288,18 @@
                     <field name="name"/>
                     <field name="fecha_inicio"/>
                     <field name="fecha_fin"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Vista Tree Unidad-->
+        <record id="view_tree_unidad" model="ir.ui.view">
+            <field name="name">view.tree.das.unidad</field>
+            <field name="model">das.unidad</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="numero"/>
                 </tree>
             </field>
         </record>
@@ -500,19 +512,11 @@
                                     <group>
                                         <field name="name" />
                                     </group>
-
-                                    <group>
-                                        <field name="paralelo"/>
-                                    </group>
-
                                     <group>
                                          <field name="periodoacademico_ids"/>
                                     </group>
                                 </group>
-
-                                <group>
                                     <field name="asignatura_ids"/>
-                                </group>
 
                         <notebook>
                         </notebook>
@@ -616,6 +620,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <!--<field name="user_id"/>-->
                     <field name="codigo_institucional"/>
                     <field name="codigo_unesco"/>
                     <field name="credito_totales"/>
@@ -716,6 +721,10 @@
             </field>
         </record>
 
+
+
+
+
         <!--Vista Form Mis Asignaturas-->
         <record id="view_form_misasignatura" model="ir.ui.view">
             <field name="name">view.form.das.misasignatura</field>
@@ -770,9 +779,6 @@
                                        <field name="asignatura_ids"/>
 
                                         <field name="dependencia_tutoria"/>
-                                    </group>
-                                    <group>
-                                       <field name="estadoplan_id"/>
                                     </group>
                                 </group>
                                 <group>
@@ -871,9 +877,6 @@
                                        <field name="asignatura_ids"/>
 
                                         <field name="dependencia_tutoria"/>
-                                    </group>
-                                    <group>
-                                       <field name="estadoplan_id"/>
                                     </group>
                                 </group>
                                 <group>
@@ -1046,7 +1049,6 @@
                                     <group>
                                         <field name="version"/>
                                         <field name="responsable" readonly="1"/>
-                                        <field name="estadosilabo_id"/>
                                         <field name="fecha_elaboracion"/>
                                         <!--<field name="fecha_revision"/>-->
                                         <field name="fecha_aprobacion" readonly="1"/>
@@ -1143,9 +1145,6 @@
                                         <field name="version"/>
                                     </group>
                                     <group>
-                                        <field name="estadosilabo_id"/>
-                                    </group>
-                                    <group>
                                         <field name="fecha_elaboracion"/>
                                     </group>
                                     <group>
@@ -1165,6 +1164,8 @@
                 </form>
             </field>
         </record>
+
+
 
         <!--Vista Form Documentos Plan Analitico-->
         <record id="view_form_documentosplan" model="ir.ui.view">
@@ -1369,25 +1370,6 @@
             </field>
         </record>
 
-        <!--Vista Form Estados Sílabos-->
-        <record id="view_form_estadosilabo" model="ir.ui.view">
-            <field name="name">view.form.das.estadosilabo</field>
-            <field name="model">das.estadosilabo</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <group><field name="name"/></group>
-                            <group></group>
-                            <group><field name="description" /></group>
-                            <group></group>
-                            <group><field name="sequence" /></group>
-                        </group>
-
-                    </sheet>
-                </form>
-            </field>
-        </record>
 
         <!--Vista Form Contenidos-->
         <record id="view_form_contenidosplan" model="ir.ui.view">
@@ -1452,30 +1434,12 @@
                             <group><field name="isbn" /></group>
                             <group><field name="direccion_electr" /></group>
                         </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <!--Vista Form Estados Plan analitico-->
-        <record id="view_form_estadoplan" model="ir.ui.view">
-            <field name="name">view.form.das.estadoplan</field>
-            <field name="model">das.estadoplan</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <group><field name="name"/></group>
-                            <group></group>
-                            <group><field name="description" /></group>
-                            <group></group>
-                            <group><field name="sequence" /></group>
-                        </group>
 
                     </sheet>
                 </form>
             </field>
         </record>
+
 
         <!--Vista Form Periodo-->
         <record id="view_form_periodoacademico" model="ir.ui.view">
@@ -1526,8 +1490,9 @@
 
                             <group><field name="evaluacion3" /></group>
 
-                            <group><field name="puntaje_total" /></group>
+                            <!--<group><field name="puntaje_total" /></group>-->
                         </group>
+
                     </sheet>
                 </form>
             </field>
@@ -1622,11 +1587,10 @@
             <field name="model">das.silabo</field>
             <field name="type">kanban</field>
             <field name="arch" type="xml">
-                <kanban  create="true" default_group_by = "estadosilabo_id" class="o_kanban_small_column o_kanban_project_tasks">
+                <kanban  create="true" default_group_by = "name" class="o_kanban_small_column o_kanban_project_tasks">
                     <field name="name"/>
                     <field name="asignatura_ids"/>
                     <field name="tipoaprendizaje_ids"/>
-                    <field name="estadosilabo_id"/>
                     <field name="fecha_elaboracion"/>
                      <field name="fecha_revision"/>
                      <field name="fecha_aprobacion"/>
@@ -1690,7 +1654,7 @@
             <field name="model">das.plananalitico</field>
             <field name="type">kanban</field>
             <field name="arch" type="xml">
-                 <kanban  create="true" default_group_by = "estadoplan_id" class="o_kanban_small_column o_kanban_project_tasks">
+                 <kanban  create="true" default_group_by = "name" class="o_kanban_small_column o_kanban_project_tasks">
                      <field name="name"/>
                      <field name="responsable"/>
                      <field name="fecha_elaboracion"/>
@@ -1895,7 +1859,7 @@
             <field name="name">Sesiones</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">das.sesion</field>
-            <field name="view_mode">form,tree</field>
+            <field name="view_mode">tree,form</field>
             <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
             <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
             <field name="help" type="html">
@@ -1912,6 +1876,14 @@
             <field name="sequence" eval="1"/>
             <field name="view_mode">form</field>
             <field name="view_id" ref="da_silabo.view_form_sesion"/>
+            <field name="act_window_id" ref="action_view_sesion"/>
+        </record>
+
+         <!--Accion de ventana sesion tree-->
+        <record id="action_view_sesion_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_sesion"/>
             <field name="act_window_id" ref="action_view_sesion"/>
         </record>
 
@@ -2101,13 +2073,7 @@
             <field name="act_window_id" ref="action_view_bibliografia"/>
         </record>
 
-        <!--Accion de ventana sesion tree-->
-        <record id="action_view_sesion_tree" model="ir.actions.act_window.view">
-            <field name="sequence" eval="1"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="da_silabo.view_tree_sesion"/>
-            <field name="act_window_id" ref="action_view_sesion"/>
-        </record>
+
 
          <!--Accion de ventana Sílabo-->
         <record id="action_view_silabo" model="ir.actions.act_window">
@@ -2171,7 +2137,7 @@
             <field name="name">Unidad</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">das.unidad</field>
-            <field name="view_mode">kanban,form,tree</field>
+            <field name="view_mode">kanban,tree,form</field>
             <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
             <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
             <field name="help" type="html">
@@ -2181,20 +2147,6 @@
             </field>
         </record>
 
-        <!--Accion de ventana estado Sílabo-->
-        <record id="action_view_estadosilabo" model="ir.actions.act_window">
-            <field name="name">Estados del Sílabo</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">das.estadosilabo</field>
-            <field name="view_mode">tree,form</field>
-            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
-            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Crear estados para gestionar los Sílabos
-                </p>
-            </field>
-        </record>
 
         <!--Accion de ventana Programa de Estudios-->
         <record id="action_view_programaestudios" model="ir.actions.act_window">
@@ -2227,6 +2179,14 @@
             <field name="act_window_id" ref="action_view_programaestudios"/>
         </record>
 
+        <!--Accion de ventana criterios evaluacion tree-->
+        <record id="action_view_unidad_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_unidad"/>
+            <field name="act_window_id" ref="action_view_unidad"/>
+        </record>
+
         <!--Accion de ventana form unidad-->
          <record id="action_view_unidad_form" model="ir.actions.act_window.view">
             <field name="sequence" eval="1"/>
@@ -2235,20 +2195,6 @@
             <field name="act_window_id" ref="action_view_unidad"/>
         </record>
 
-        <!--Accion de ventana èstado plan-->
-        <record id="action_view_estadoplan" model="ir.actions.act_window">
-            <field name="name">Estados del Plan Analítico</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">das.estadoplan</field>
-            <field name="view_mode">tree,form</field>
-            <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
-            <!--<field name="domain">[('groups_id.name','=', 'Docentes')]</field>-->
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Crear estados para gestionar los Planes Analíticos
-                </p>
-            </field>
-        </record>
 
         <!--Accion de ventana Criterios de Evaluacion-->
         <record id="action_view_criteriosevaluacion" model="ir.actions.act_window">
@@ -2363,6 +2309,7 @@
             <field name="view_mode">tree,form</field>
             <!--<field name="search_view_id" ref="da_silabo.view_docente_search_valoracion"/>-->
             <!--<field name="domain">[('user_id','in', uid)]</field>-->
+            <field name="domain">[('user_id','=', uid)]</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     El Administrador no ha registrado asignaturas para su módulo de Silabos
@@ -2408,6 +2355,13 @@
             <field name="act_window_id" ref="action_view_misasignatura"/>
         </record>
 
+        <record id="action_view_contenidosplan_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="da_silabo.view_tree_contenidosplan"/>
+            <field name="act_window_id" ref="action_view_contenidosplan"/>
+        </record>
+
         <!--Accion de ventana contendiso form-->
         <record id="action_view_contenidosplan_form" model="ir.actions.act_window.view">
             <field name="sequence" eval="2"/>
@@ -2416,12 +2370,7 @@
             <field name="act_window_id" ref="action_view_contenidosplan"/>
         </record>
 
-        <record id="action_view_contenidosplan_tree" model="ir.actions.act_window.view">
-            <field name="sequence" eval="1"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="da_silabo.view_tree_contenidosplan"/>
-            <field name="act_window_id" ref="action_view_contenidosplan"/>
-        </record>
+
 
         <!--Accion de ventana misasignatura tree-->
         <record id="action_view_misasignatura_tree" model="ir.actions.act_window.view">
@@ -2580,7 +2529,7 @@
                   parent="da_silabo.menu_g_silaboD"
                   action="da_silabo.action_view_documentossilabo_docente"/>
 
-        <menuitem id="menu_gestionasignatura"
+        <!--<menuitem id="menu_gestionasignatura"
                   name="Asignatura"
                   sequence = "4"
                   groups = "da_silabo.res_groups_docente"
@@ -2638,11 +2587,7 @@
                   sequence = "5"
                   groups = "da_silabo.res_groups_docente"
                   parent="da_silabo.menu_gestionasignatura"
-                  action="da_silabo.action_view_criteriosevaluacion"/>
-
-
-
-
+                  action="da_silabo.action_view_criteriosevaluacion"/>-->
 
         <menuitem id="menu_docente"
                   name="Docentes"
@@ -2695,19 +2640,7 @@
                   parent="da_silabo.menu_configuracion"
                   action="da_silabo.action_view_programaestudios"/>
 
-        <menuitem id="menu_estadosilabo"
-                  name="Estados del Sílabo"
-                  sequence = "2"
-                  groups = "da_silabo.res_groups_administrador"
-                  parent="da_silabo.menu_configuracion"
-                  action="da_silabo.action_view_estadosilabo"/>
 
-        <menuitem id="menu_estadoplan"
-                  name="Estados del Plan Analítico"
-                  sequence = "3"
-                  groups = "da_silabo.res_groups_administrador"
-                  parent="da_silabo.menu_configuracion"
-                  action="da_silabo.action_view_estadoplan"/>
 
         <menuitem id="menu_acionesplanificadas"
                   name="Acciones Planificadas"

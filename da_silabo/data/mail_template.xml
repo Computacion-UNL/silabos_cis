@@ -2,12 +2,12 @@
     <data noupdate="1">
         <!--Email template -->
         <record id="email_template_asignacion_asignatura" model="mail.template">
-            <field name="name">Asignación Asignatura</field>
+            <field name="name">Designación Asignatura</field>
             <field name="model_id" ref="da_silabo.model_res_users"/>
             <field name="email_from">${(object.company_id.email | safe)}</field>
             <!--<field name="email_to" >${}</field>-->
             <!--<field name="subject">INICIALIZACIÓN DEL PLAN MEJORAS DE LA
-                EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
+              EVALUACIÓN AL DESEMPEÑO DOCENTE</field>-->
             <field name="auto_delete" eval="True"/>
             <field name="lang">${object.lang}</field>
             <field name="body_html" type="html">
@@ -39,8 +39,8 @@
                                 <tr><td valign="top" style="font-size: 13px;">
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
-                                        Se le comunica que ha sido asignado una Asignatura para el desarrollo del sílabo.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Se le comunica que se le ha designado una Asignatura para el desarrollo del sílabo.<br/>
+                                        Por favor, revise su planificación en Syllabus de la Carrera de Ingeniería en Sistemas dentro del Sistema de Información CISC-ERP.<br/>
                                         Nota: Recuerde que tiene un máximo de cuatro días hábiles para elaborar el Plan Analítico y Sílabo.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -94,7 +94,7 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -144,7 +144,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que su Plan Analítico ha sido aprobado.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que tiene un máximo de dos días hábiles para elaborar el Sílabo.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -198,7 +198,8 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
+                          <!--<a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>-->
                       </td></tr>
                     </table>
                 </td></tr>
@@ -206,6 +207,7 @@
             </field>
         </record>
     </data>
+
     <!-- NOTIFICAR REVISION DEL PLAN ANALITICO -->
     <data noupdate="1">
         <!--Email template -->
@@ -248,7 +250,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que existe un Plan Analítico que requiere revisión.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que puede asignar un revisor.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -302,7 +304,8 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <!--<a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>-->
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -353,7 +356,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que el Plan Analítico ha sido revisado por el miembro del Consejo Consultivo.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que debe firmar el documento y cargarlo en el sistema para su aprobación.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -407,7 +410,8 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <!--<a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>-->
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -458,7 +462,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que ha sido designado como revisor de un Plan Analítico.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que tiene que rellenar el campo "Plan Analítico Revisado?" para su aprobación pertinente.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -512,7 +516,8 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <!--<a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>-->
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -563,7 +568,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que existe un Sílabo que requiere revisión.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que puede asignar un revisor.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -617,7 +622,7 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                         <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -668,7 +673,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que su Sílabo ha sido aprobado.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         <br/>
                                         Ingrese con la siguiente información:
                                         <ul>
@@ -721,7 +726,7 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -772,7 +777,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que su Sílabo ha sido revisado por el miembro del Consejo Consultivo.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que debe firmar el documento y cargarlo en el sistema para su aprobación.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -826,7 +831,7 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -877,7 +882,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que ha sido designado como revisor de un Sílabo.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación  en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que tiene que rellenar el campo "Plan Analítico Revisado?" para su aprobación pertinente.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -931,7 +936,7 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -982,7 +987,7 @@
                                     <div>
                                         Estimado/a ${object.name or 'Usuario'},<br/> <br/>
                                         Se le comunica que el sílabo ha sido revisado por el miembro del Consejo Consultivo.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que debe firmar el documento y cargarlo en el sistema para su aprobación.
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -1036,7 +1041,7 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -1088,7 +1093,7 @@
                                         <br/>
                                         Fecha de entrega del Sílabo:: ${object.fecha_culminacion}.
                                         <br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Nota: Recuerde que el máximo de días hábiles para elaborar el Plan Analítico y Sílabo son 4.
                                         <br/>
                                     </div>
@@ -1121,7 +1126,7 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>
@@ -1169,7 +1174,7 @@
                                     <div>
                                         Estimado/a ${object.responsable.name or 'Docente'},<br/> <br/>
                                         Se le comunica que el sílabo para la asignatura ${object.asignatura_ids.name} ha expirado.<br/>
-                                        Por favor, revise su planificación en el Módulo de Diseño y Actualización de Sílabos de la Carrera de Ingeniería en Sistemas dentro del Sistema Odoo ERP.<br/>
+                                        Por favor, revise su planificación en Syllabus dentro del Sistema de Información CISC - ERP.<br/>
                                         Comuníquese con la Dirección ${object.responsable.company_id.name} para cualquier inquietud..
                                         <br/>
                                         Ingrese con la siguiente información:
@@ -1223,7 +1228,7 @@
                 <tr><td align="center" style="min-width: 590px;">
                     <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
                       <tr><td style="text-align: center; font-size: 13px;">
-                          <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=portalinvite" style="color: #875A7B;">Odoo</a>
+                          <a target="_blank" href="https://ciscunl.info/" style="color: #875A7B;">CISC - ERP</a>
                       </td></tr>
                     </table>
                 </td></tr>

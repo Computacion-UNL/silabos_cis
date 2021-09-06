@@ -531,8 +531,6 @@ class PlanAnalitico(models.Model):
      _description = "Plan Analítico"
      _inherit = "mail.thread"
 
-
-
      name = fields.Char(string="Nombre del Plan Análitico", default="Plan Analítico")
      responsable = fields.Many2one("res.users", string="Responsable", default=lambda self: self.env.user)
      fecha_elaboracion = fields.Date(string="Fecha de Elaboración", required=True, default=fields.Date.today())
@@ -559,11 +557,6 @@ class PlanAnalitico(models.Model):
          'das.bibliografia', 'das_biblio_rel',
          'bibliografia_id', 'planalitico_id', string='Bibliografia'
      )
-
-     estadoplan_id = fields.Many2one("das.estadoplan", string="Estado del Plan Analítico", ondelete='restrict',
-                                     required=True,
-                                     default=lambda self: self.env['das.estadoplan'].search([], limit=1),
-                                     group_expand='_group_expand_stage_ids', track_visibility="onchange")
 
      criterioevaluacion_id = fields.One2many("das.criteriosevaluacion", "plananalitico_id",
                                              string="Criterios de Evaluacion",
@@ -643,25 +636,6 @@ class PlanAnalitico(models.Model):
      def action_return(self):
          for rec in self:
              rec.state = 'inicio'
-
-
-
-
-class EstadoPlan(models.Model):
-    _name = "das.estadoplan"
-    _description = "Estado del Plan Analítico"
-    _order = 'sequence'
-
-    name = fields.Char(string="Nombre", required=True)
-    sequence = fields.Integer()
-    description = fields.Char(string="Descripción")
-
-
-    _sql_constraints = [
-        ('name_unique', 'unique (name)',
-         "El nombre del Estado ya existe!"),
-    ]
-
 
 class ContenidosPlan(models.Model):
      _name = "das.contenidosplan"
@@ -962,10 +936,6 @@ class Silabo(models.Model):
          'bibliografia_id', 'silabo_id', string='Bibliografia'
      )
 
-     estadosilabo_id = fields.Many2one("das.estadosilabo", string="Estado del Sílabo", ondelete='restrict', required=True,
-                                 default=lambda self: self.env['das.estadosilabo'].search([], limit=1),
-                                 group_expand='_group_expand_stage_ids', track_visibility="onchange")
-
      revisor_id = fields.Many2one("res.users", string="Revisor")
 
 
@@ -1037,20 +1007,6 @@ class Silabo(models.Model):
 
          return super(Silabo, self).create(vals)
 
-class EstadoSilabo(models.Model):
-    _name = "das.estadosilabo"
-    _description = "Estado del Sílabo"
-    _order = 'sequence'
-
-    name = fields.Char(string="Nombre", required=True)
-    sequence = fields.Integer()
-    description = fields.Char(string="Descripción")
-
-
-    _sql_constraints = [
-        ('name_unique', 'unique (name)',
-         "El nombre del Estado ya existe!"),
-    ]
 
 class CriteriosEvaluacion(models.Model):
      _name = "das.criteriosevaluacion"
@@ -1060,7 +1016,7 @@ class CriteriosEvaluacion(models.Model):
      evaluacion1 = fields.Float(string="Puntaje primera evaluación", required = True)
      evaluacion2 = fields.Float(string="Puntaje segunda evaluación",required=True)
      evaluacion3 = fields.Float(string="Puntaje tercera evaluación", required = True)
-     puntaje_total = fields.Float(string="Puntaje total", required=True)
+     puntaje_total = fields.Float(string="Puntaje total")
 
      plananalitico_id = fields.Many2one("das.plananalitico", string="Plan Analitico",
                                         default=lambda self: self.env['das.plananalitico'].search([], limit=1),

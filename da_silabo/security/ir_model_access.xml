@@ -110,7 +110,7 @@
         <field name="perm_create" eval="0"/>
         <field name="perm_write" eval="0"/>
         <field name="perm_unlink" eval="0"/>
-        <field name="perm_read" eval="1"/>
+        <field name="perm_read" eval="0"/>
     </record>
 
     <record id="model_access_asignatura_C" model="ir.model.access">
@@ -243,69 +243,6 @@
         <field name="perm_unlink" eval="0"/>
         <field name="perm_read" eval="1"/>
     </record>
-
-    <!-- MODELO ESTADO SILABO-->
-    <record id="model_access_estadosilabo_A" model="ir.model.access">
-        <field name="name">model.access.das.estadosilabo</field>
-        <field name="model_id" ref="da_silabo.model_das_estadosilabo"/>
-        <field name="group_id" ref="da_silabo.res_groups_administrador"/><!--Administracion/Ajustes-->
-        <field name="perm_create" eval="1"/>
-        <field name="perm_write" eval="1"/>
-        <field name="perm_unlink" eval="1"/>
-        <field name="perm_read" eval="1"/>
-    </record>
-
-    <record id="model_access_estadosilabo_D" model="ir.model.access">
-        <field name="name">model.access.das.estadosilabo</field>
-        <field name="model_id" ref="da_silabo.model_das_estadosilabo"/>
-        <field name="group_id" ref="da_silabo.res_groups_docente"/><!--Administracion/Ajustes-->
-        <field name="perm_create" eval="0"/>
-        <field name="perm_write" eval="0"/>
-        <field name="perm_unlink" eval="0"/>
-        <field name="perm_read" eval="1"/>
-    </record>
-
-    <record id="model_access_estadosilabo_C" model="ir.model.access">
-        <field name="name">model.access.das.estadosilabo</field>
-        <field name="model_id" ref="da_silabo.model_das_estadosilabo"/>
-        <field name="group_id" ref="da_silabo.res_groups_docente_consejo"/><!--Administracion/Ajustes-->
-        <field name="perm_create" eval="0"/>
-        <field name="perm_write" eval="1"/>
-        <field name="perm_unlink" eval="0"/>
-        <field name="perm_read" eval="1"/>
-    </record>
-
-    <!-- MODELO ESTADO PLAN ANALITICO-->
-    <record id="model_access_estadoplan_A" model="ir.model.access">
-        <field name="name">model.access.das.estadoplan</field>
-        <field name="model_id" ref="da_silabo.model_das_estadoplan"/>
-        <field name="group_id" ref="da_silabo.res_groups_administrador"/><!--Administracion/Ajustes-->
-        <field name="perm_create" eval="1"/>
-        <field name="perm_write" eval="1"/>
-        <field name="perm_unlink" eval="1"/>
-        <field name="perm_read" eval="1"/>
-    </record>
-
-    <record id="model_access_estadoplan_D" model="ir.model.access">
-        <field name="name">model.access.das.estadoplan</field>
-        <field name="model_id" ref="da_silabo.model_das_estadoplan"/>
-        <field name="group_id" ref="da_silabo.res_groups_docente"/><!--Administracion/Ajustes-->
-        <field name="perm_create" eval="0"/>
-        <field name="perm_write" eval="0"/>
-        <field name="perm_unlink" eval="0"/>
-        <field name="perm_read" eval="1"/>
-    </record>
-
-    <record id="model_access_estadoplan_C" model="ir.model.access">
-        <field name="name">model.access.das.estadoplan</field>
-        <field name="model_id" ref="da_silabo.model_das_estadoplan"/>
-        <field name="group_id" ref="da_silabo.res_groups_docente_consejo"/><!--Administracion/Ajustes-->
-        <field name="perm_create" eval="0"/>
-        <field name="perm_write" eval="1"/>
-        <field name="perm_unlink" eval="0"/>
-        <field name="perm_read" eval="1"/>
-    </record>
-
 
      <record id="model_access_unidad_A" model="ir.model.access">
         <field name="name">model.access.das.unidad</field>

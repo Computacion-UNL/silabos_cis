@@ -5,6 +5,8 @@
     <record id="res_groups_administrador" model="res.groups">
         <field name="name">Administrador</field>
         <field name="category_id" ref="da_silabo.module_da_silabo"/>
+            <!--<field name="users" eval="[(4, ref('base.user_root'))]"/>-->
+        <field name="users" eval="[(4, ref('base.group_system'))]"/>
     </record>
 
     <record id="res_groups_docente" model="res.groups">

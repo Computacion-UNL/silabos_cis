@@ -1,4 +1,18 @@
 <odoo>
+
+    <record id="ir_rule_administrador_mostrar_asignaturas" model="ir.rule">
+        <field name="name">Mostrar Asignaturas asignadas</field>
+        <field name="model_id" ref="da_silabo.model_das_asignatura"/>
+        <field name="domain_force">
+            [(1,'=', 1)]
+        </field>
+        <field name="groups" eval="[(4, ref('da_silabo.res_groups_administrador'))]"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_read" eval="1"/>
+    </record>
+
     <record id="ir_rule_docente_mostrar_asignaturas_propias" model="ir.rule">
         <field name="name">Mostrar Asignaturas asignadas</field>
         <field name="model_id" ref="da_silabo.model_das_asignatura"/>

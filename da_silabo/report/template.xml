@@ -163,32 +163,47 @@
                             <div class="page"/>
                             <p style="page-break-after:always;">   </p>
                             <span><b>4. CONTENIDOS Y ORGANIZACIÓN DEL APRENDIZAJE DE LA ASIGNATURA</b></span>
+                            <br/>
+                            <span>N.U = NÚMERO DE UNIDAD</span>
+                            <br/>
+                            <span>N.D.H.C.D. = NÚMERO DE HORAS CONTACTO DOCENTE</span>
+                            <br/>
+                            <span>N.D.H.T = NÚMERO DE HORAS PARA TUTORIAS</span>
+                            <br/>
+                            <span>N.D.H.P = NÚMERO DE HORAS PARA PRÁCTICAS</span>
+                            <br/>
+                            <span>N.D.H.T = NÚMERO DE HORAS PARA APRENDIZAJE AUTÓNOMO</span>
+                            <br/>
                             <table class="table table-condensed table-bordered">
                                 <thead>
-                                    <th class="text-center" >NRO. DE UNIDAD</th>
-                                    <th class="text-center" >NOMBRE DE LA UNIDAD</th>
+                                    <th class="text-center" >N.U</th>
+                                    <th class="text-center" >NOMBRE DE<br/>LA UNIDAD</th>
                                     <th class="text-center" >CONTENIDOS MINIMOS</th>
-                                    <th class="text-center" >NRO. DE HORAS CONTACTO DOC.</th>
-                                    <th class="text-center" >NRO. DE HORAS TUTORIAS</th>
-                                    <th class="text-center" >NRO. DE HORAS PRACTICAS</th>
-                                    <th class="text-center" >NRO. DE HORAS AUTÓNOMAS</th>
+                                    <th class="text-center" >N.D.H.<br/>C.D.</th>
+                                    <th class="text-center" >N.D.<br/>H.T</th>
+                                    <th class="text-center" >N.D.<br/>H.P</th>
+                                    <th class="text-center" >N.D.<br/>H.T</th>
                                 </thead>
                                 <t t-foreach="request.env['das.contenidosplan'].search([('plananalitico_id', '=', obj.id)])" t-as="contenido">
                                     <tbody>
-                                        <td class="text-center"><span t-field="contenido.numero"/></td>
-                                        <td class="text-center"><span t-field="contenido.nombre_unidad"/></td>
-                                        <td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>
-                                        <td class="text-center"><span t-field="contenido.horas_profesor"/></td>
-                                        <td class="text-center"><span t-field="contenido.horas_tutorias"/></td>
-                                        <td class="text-center"><span t-field="contenido.horas_practicas"/></td>
-                                        <td class="text-center"><span t-field="contenido.horas_autonomo"/></td>
+                                        <td class="text-left"><span t-field="contenido.numero"/></td>
+                                        <td class="text-left"><span t-field="contenido.nombre_unidad"/></td>
+                                        <td class="text-left"><span t-raw="contenido.detalle_contenidos"/></td>
+                                        <td class="text-left"><span t-field="contenido.horas_profesor"/></td>
+                                        <td class="text-left"><span t-field="contenido.horas_tutorias"/></td>
+                                        <td class="text-left"><span t-field="contenido.horas_practicas"/></td>
+                                        <td class="text-left"><span t-field="contenido.horas_autonomo"/></td>
                                     </tbody>
                                 </t>
                             </table>
-
                             <div class="page"/>
-                            <span><b>5. RESULTADOS DE APRENDIZAJE DE LA ASIGNATURA</b></span><br/>
-                            <span t-raw="obj.resultados_aprendizaje"/>
+                            <br/><br/>
+                            <span><b>5. RESULTADOS DE APRENDIZAJE DE LA ASIGNATURA</b><br/><br/></span>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <th class="text-justify"><span t-raw="obj.resultados_aprendizaje"/></th>
+                                </thead>
+                            </table>
 
                             <br/><br/>
                             <span><b>6. ESTRATEGIAS METODOLÓGICAS</b><br/><br/></span>
@@ -400,7 +415,7 @@
                                         </t>
                                     </th>
                                     <th class="text-left" ><span>1.4.2 COMPLEMENTARIA: </span></th>
-                                    <th class="text-Ccenter" >
+                                    <th class="text-center" >
                                         <t t-if="obj.plananalitico_id.asignatura_ids.tipo == 'comple'">
                                             <span>X</span>
                                         </t>
@@ -409,7 +424,7 @@
                                         </t>
                                     </th>
                                     <th class="text-left" ><span>1.4.3 OPTATIVA: </span></th>
-                                    <th class="text-Ccenter" >
+                                    <th class="text-center" >
                                         <t t-if="obj.plananalitico_id.asignatura_ids.tipo == 'optativa'">
                                             <span>X</span>
                                         </t>
@@ -496,33 +511,32 @@
                             <div class="page"/>
                             <p style="page-break-after:always;">   </p>
                             <span><b>3. ESTRUCTURA DE LA ASIGNATURA</b><br/></span>
+                             <span>N.H = NÚMERO DE HORAS,
+                                A.P.H.D.A. = ACTIVIDADES PRACTICAS(HABILIDADES A DESARROLLAR EN LA ASIGNATURA),
+                                A.A.A= ACTIVIDADES APRENDIZAJE AUTÓNOMO,E.D.E = ESTRATEGIAS DE EVALUACIÓ </span>
+                           <!--<span>A.P.H.D.A. = ACTIVIDADES PRACTICAS(HABILIDADES A DESARROLLAR EN LA ASIGNATURA)</span>
+                            <br/>
+                            <span>A.A.A= ACTIVIDADES APRENDIZAJE AUTÓNOMO</span>
+                            <br/>
+                            <span>E.D.E = ESTRATEGIAS DE EVALUACIÓN</span>-->
                             <table class="table table-condensed table-bordered">
                                 <thead>
-                                    <th class="text-center" >UNIDAD/TEMA</th>
-                                    <th class="text-center" >NRO. HORAS</th>
-                                    <th class="text-center" >CONTENIDOS TEÓRICOS <br/>(SISTEMA/CONTENIDOS)</th>
-                                    <th class="text-center" >NRO. DE HORAS</th>
-                                    <th class="text-center" >ACTIVIDADES PRACTICAS <br/>(HABILIDADES A DESARROLLAR EN LA ASIGNATURA)</th>
-                                    <th class="text-center" >NRO. DE HORAS</th>
-                                    <th class="text-center" >ACTIVIDADES DE APRENDIZAJE AUTÓNOMO</th>
-                                    <th class="text-center" >NRO. DE HORAS</th>
-                                    <th class="text-center" >ESTRATEGIAS DE EVALUACIÓN</th>
-                                </thead>
-                                <t t-foreach="request.env['das.unidad'].search([('silabo_id', '=', obj.id)])" t-as="unidad">
+                                    <t t-foreach="request.env['das.unidad'].search([('silabo_id', '=', obj.id)])" t-as="unidad">
                                     <tbody>
-                                        <td class="text-center"><span t-field="unidad.name"/></td>
-                                        <td class="text-center"><span t-field="unidad.horas"/></td>
-                                        <td class="text-center"><span t-raw="unidad.contenido_teorico"/></td>
-                                        <td class="text-center"><span t-field="unidad.horas_teorico"/></td>
-                                        <td class="text-center"><span t-raw="unidad.actividades_practicas"/></td>
-                                        <td class="text-center"><span t-field="unidad.horas_practicas"/></td>
-                                        <td class="text-center"><span t-raw="unidad.aprendizaje_autonomo"/></td>
-                                        <td class="text-center"><span t-field="unidad.horas_autonomo"/></td>
-                                        <td class="text-center"><span t-raw="unidad.estrategias_evaluacion"/></td>
+                                        <td class="text-center"><b>UNIDAD/TEMA<br></br><br></br></b><span t-field="unidad.name"/></td>
+                                        <td class="text-center"><b>N.H<br></br><br></br></b><span t-field="unidad.horas"/></td>
+                                        <td class="text-center"><b>CONTENIDOS TEÓRICOS<br></br><br></br></b><span t-raw="unidad.contenido_teorico"/></td>
+                                        <td class="text-center"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_teorico"/></td>
+                                        <td class="text-center"><b>A.P.H.D.A.<br></br><br></br></b><span t-raw="unidad.actividades_practicas"/></td>
+                                        <td class="text-center"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_practicas"/></td>
+                                        <td class="text-center"><b>A.A.A<br></br><br></br></b><span t-raw="unidad.aprendizaje_autonomo"/></td>
+                                        <td class="text-center"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_autonomo"/></td>
+                                        <td class="text-center"><b>E.D.E<br>------</br><br></br></b><span t-raw="unidad.estrategias_evaluacion"/></td>
                                     </tbody>
-                                </t>
+                                    </t>
+                                </thead>
                             </table>
-                            <p style="page-break-after:always;">   </p>
+                            <!--<p style="page-break-after:always;">   </p>-->
                             <span><b>ACTITUDES Y VALORES A DESARROLAR EN LA ASIGNATURA</b><br/></span>
                             <table class="table table-condensed table-bordered">
                                 <thead>
@@ -549,35 +563,34 @@
                             <table class="table table-condensed table-bordered">
                                 <t t-foreach="obj.tipoaprendizaje_ids" t-as="tipo">
                                     <tbody>
-                                        <th class="text-left" ><span t-field="tipo.name"/></th>
-                                        <th> X </th>
+                                        <td class="text-left" ><span t-field="tipo.name"/></td>
+                                        <td> X </td>
                                     </tbody>
                                 </t>
                             </table>
-                            <p style="page-break-after:always;">   </p>
+                            <!--<p style="page-break-after:always;">   </p>-->
                             <span><b>4. HORARIO DE CLASE</b><br/></span>
                             <span t-raw="obj.horario"/>
                             <br/><br/>
+
                             <span><b>5. DESARROLLO DE LA ASIGNATURA</b><br/></span>
-                            <span t-raw="obj.horario"/>
                             <t t-foreach="request.env['das.sesion'].search([('silabo_id', '=', obj.id)])" t-as="sesion">
                             <!--<t t-foreach="obj.unidad_ids.sesion_ids" t-as="sesion">-->
-                                <span><b>Semana <t t-esc="sesion.name"/>: </b> <t t-esc="sesion.fecha_inicio"/> al <t t-esc="sesion.fecha_fin"/><br/><br/></span>
-                                <br/>
+                                <span><b>Semana <t t-esc="sesion.name"/>: </b> <t t-esc="sesion.fecha_inicio"/> al <t t-esc="sesion.fecha_fin"/><br/></span>
                                 <table class="table table-condensed table-bordered">
-                                    <thead>
+                                    <!--<thead>
                                         <th class="text-center">DURACIÓN DE CADA SESIÓN</th>
                                         <th class="text-center">CONTENIDOS Y ACTIVIDADES DE ESTUDIO TEÓRICO</th>
                                         <th class="text-center">ACTIVIDADES PRÁCTICAS</th>
                                         <th class="text-center">ACTIVIDADES DE TRABAJO AUTÓNOMO</th>
                                         <th class="text-center">ESCENARIO DE APRENDIZAJE</th>
-                                    </thead>
+                                    </thead>-->
                                     <tbody>
-                                        <td class="text-left"><span t-field="sesion.duracion"/></td>
-                                        <td class="text-left"><span t-raw="sesion.contenidos"/></td>
-                                        <td class="text-left"><span t-raw="sesion.actividades_practicas"/></td>
-                                        <td class="text-left"><span t-raw="sesion.trabajo_autonomo"/></td>
-                                        <td class="text-left"><span t-raw="sesion.escenario_aprendizaje"/></td>
+                                        <td class="text-left">DURACIÓN DE CADA SESIÓN<span t-field="sesion.duracion"/></td>
+                                        <td class="text-left">ONTENIDOS Y ACTIVIDADES DE ESTUDIO TEÓRICO<span t-raw="sesion.contenidos"/></td>
+                                        <td class="text-left">ACTIVIDADES PRÁCTICAS<span t-raw="sesion.actividades_practicas"/></td>
+                                        <td class="text-left">ACTIVIDADES DE TRABAJO AUTÓNOMO<span t-raw="sesion.trabajo_autonomo"/></td>
+                                        <td class="text-left">ESCENARIO DE APRENDIZAJE<span t-raw="sesion.escenario_aprendizaje"/></td>
                                    </tbody>
                                 </table>
                             </t>
@@ -586,9 +599,9 @@
                             <table class="table table-condensed table-bordered">
                                 <thead>
                                     <th class="text-center" >PARÁMETROS (INSTRUMENTOS) DE EVALUACIÓN</th>
-                                    <th class="text-center" >PRIMERA EVALUACIÓN (10 PUNTOS)</th>
-                                    <th class="text-center" >SEGUNDA EVALUACIÓN (10 PUNTOS)</th>
-                                    <th class="text-center" >TERCERA EVALUACIÓN (10 PUNTOS)</th>
+                                    <th class="text-center" >PRIMERA EVALUACIÓN %(PUNTOS)</th>
+                                    <th class="text-center" >SEGUNDA EVALUACIÓN %(PUNTOS)</th>
+                                    <th class="text-center" >TERCERA EVALUACIÓN %(PUNTOS)</th>
                                 </thead>
                                 <t t-foreach="obj.plananalitico_id.criterioevaluacion_id" t-as="criter">
                                     <tbody>
@@ -600,9 +613,9 @@
                                 </t>
                                 <tbody>
                                 <td class="text-center"><span>TOTAL</span></td>
-                                <td class="text-center"><span>(10 PUNTOS)</span></td>
-                                <td class="text-center"><span>(10 PUNTOS)</span></td>
-                                <td class="text-center"><span>(10 PUNTOS)</span></td>
+                                <td class="text-center"><span>100%</span></td>
+                                <td class="text-center"><span>100%</span></td>
+                                <td class="text-center"><span>100%</span></td>
                             </tbody>
                         </table>
                         <div class="page"/>
