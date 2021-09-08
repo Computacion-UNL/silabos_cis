@@ -9,7 +9,7 @@
                                 color: #000000">
                                 <table class="table table-condensed table-bordered">
                                         <tr>
-                                            <td style="background-color: #8DBC48;" ><h2 align="center">UNIVERSIDAD NACIONAL DE LOJA</h2></td>
+                                            <td style="background-color: #0000FF;" ><h2 align="center">UNIVERSIDAD NACIONAL DE LOJA</h2></td>
                                         </tr>
                                 </table>
                                 <h4 align="center">FACULTAD DE LA ENERGÍA, LAS INDUSTRIAS Y LOS RECURSOS NATURALES NO RENOVABLES</h4>
@@ -25,7 +25,7 @@
                                     </t>
                                     <table class="table table-condensed table-bordered">
                                         <tr>
-                                            <td style="background-color: #8DBC48;" ><h4><b>PROGRAMA ANALÍTICO DE LA ASIGNATURA: </b><span t-field="obj.asignatura_ids.name"/></h4></td>
+                                            <td style="background-color: #0000FF;" ><h4><b>PROGRAMA ANALÍTICO DE LA ASIGNATURA: </b><span t-field="obj.asignatura_ids.name"/></h4></td>
                                         </tr>
                                    </table>
                                     <h5 align="right"><b>RESPONSABLE: Ing. <span t-field="obj.responsable.name"/></b></h5>
@@ -209,7 +209,7 @@
                             <span><b>6. ESTRATEGIAS METODOLÓGICAS</b><br/><br/></span>
                             <table class="table table-condensed table-bordered">
                                 <thead>
-                                    <th class="text-left"><span t-raw="obj.estrategia_metodologicas"/></th>
+                                    <th class="text-justify"><span t-raw="obj.estrategia_metodologicas"/></th>
                                 </thead>
                             </table>
                             <div class="page"/>
@@ -224,10 +224,10 @@
                                 </thead>
                                 <t t-foreach="request.env['das.criteriosevaluacion'].search([('plananalitico_id', '=', obj.id)])" t-as="criterio">
                                     <tbody>
-                                        <td class="text-center"><span t-raw="criterio.parametros_evaluacion"/></td>
-                                        <td class="text-center"><span t-field="criterio.evaluacion1"/>%</td>
-                                        <td class="text-center"><span t-field="criterio.evaluacion2"/>%</td>
-                                        <td class="text-center"><span t-field="criterio.evaluacion3"/>%</td>
+                                        <td class="text-left"><span t-raw="criterio.parametros_evaluacion"/></td>
+                                        <td class="text-left"><span t-field="criterio.evaluacion1"/>%</td>
+                                        <td class="text-left"><span t-field="criterio.evaluacion2"/>%</td>
+                                        <td class="text-left"><span t-field="criterio.evaluacion3"/>%</td>
                                     </tbody>
                                 </t>
                                 <tbody>
@@ -255,20 +255,20 @@
                                 <t t-foreach="obj.bibliografia_ids" t-as="biblio">
                                     <t t-if="biblio.tipo == 'fisica'">
                                         <tbody>
-                                            <td class="text-center"><span t-field="biblio.autor"/></td>
-                                            <td class="text-center"><span t-field="biblio.name"/></td>
+                                            <td class="text-left"><span t-field="biblio.autor"/></td>
+                                            <td class="text-left"><span t-field="biblio.name"/></td>
                                             <!--<td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>-->
-                                            <td class="text-center"><span t-field="biblio.ciudad_pais"/></td>
-                                            <td class="text-center"><span t-field="biblio.edicion"/></td>
-                                            <td class="text-center"><span t-field="biblio.anio_publicacion"/></td>
-                                            <td class="text-center"><span t-field="biblio.editorial"/></td>
-                                            <td class="text-center"><span t-field="biblio.isbn"/></td>
+                                            <td class="text-left"><span t-field="biblio.ciudad_pais"/></td>
+                                            <td class="text-left"><span t-field="biblio.edicion"/></td>
+                                            <td class="text-left"><span t-field="biblio.anio_publicacion"/></td>
+                                            <td class="text-left"><span t-field="biblio.editorial"/></td>
+                                            <td class="text-left"><span t-field="biblio.isbn"/></td>
 
                                         </tbody>
                                         <t t-if="biblio.direccion_electr != ''">
                                             <tbody>
                                                 <td class="text-center">URL</td>
-                                                 <td class="text-center" ><span t-field="biblio.direccion_electr"/></td>
+                                                 <td class="text-left" ><span t-field="biblio.direccion_electr"/></td>
                                             </tbody>
                                         </t>
                                     </t>
@@ -290,13 +290,13 @@
                                 <t t-foreach="obj.bibliografia_ids" t-as="biblio">
                                     <t t-if="biblio.tipo == 'virtual'">
                                         <tbody>
-                                            <td class="text-center"><span t-field="biblio.autor"/></td>
-                                            <td class="text-center"><span t-field="biblio.name"/></td>
+                                            <td class="text-left"><span t-field="biblio.autor"/></td>
+                                            <td class="text-left"><span t-field="biblio.name"/></td>
                                             <!--<td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>-->
-                                            <td class="text-center"><span t-field="biblio.direccion_electr"/></td>
-                                            <td class="text-center"><span t-field="biblio.anio_publicacion"/></td>
-                                            <td class="text-center"><span t-field="biblio.editorial"/></td>
-                                            <td class="text-center"><span t-field="biblio.isbn"/></td>
+                                            <td class="text-left"><span t-field="biblio.direccion_electr"/></td>
+                                            <td class="text-left"><span t-field="biblio.anio_publicacion"/></td>
+                                            <td class="text-left"><span t-field="biblio.editorial"/></td>
+                                            <td class="text-left"><span t-field="biblio.isbn"/></td>
 
                                         </tbody>
                                     </t>
@@ -353,7 +353,7 @@
                                 color: #000000">
                                 <table class="table table-condensed table-bordered">
                                         <tr>
-                                            <td style="background-color: #8DBC48;" ><h2 align="center">UNIVERSIDAD NACIONAL DE LOJA</h2></td>
+                                            <td style="background-color: #0000FF;" ><h2 align="center">UNIVERSIDAD NACIONAL DE LOJA</h2></td>
                                         </tr>
                                 </table>
                                 <h4 align="center">FACULTAD DE LA ENERGÍA, LAS INDUSTRIAS Y LOS RECURSOS NATURALES NO RENOVABLES</h4>
@@ -369,7 +369,7 @@
                                     </t>
                                     <table class="table table-condensed table-bordered">
                                         <tr>
-                                            <td style="background-color: #8DBC48;" ><h4><b>SILABO: </b><span t-field="obj.plananalitico_id.asignatura_ids.name"/></h4></td>
+                                            <td style="background-color: #0000FF;" ><h4><b>SILABO: </b><span t-field="obj.plananalitico_id.asignatura_ids.name"/></h4></td>
                                         </tr>
                                    </table>
                                     <h5 align="right"><b>RESPONSABLE: Ing. <span t-field="obj.responsable.name"/></b></h5>
@@ -523,15 +523,15 @@
                                 <thead>
                                     <t t-foreach="request.env['das.unidad'].search([('silabo_id', '=', obj.id)])" t-as="unidad">
                                     <tbody>
-                                        <td class="text-center"><b>UNIDAD/TEMA<br></br><br></br></b><span t-field="unidad.name"/></td>
-                                        <td class="text-center"><b>N.H<br></br><br></br></b><span t-field="unidad.horas"/></td>
-                                        <td class="text-center"><b>CONTENIDOS TEÓRICOS<br></br><br></br></b><span t-raw="unidad.contenido_teorico"/></td>
-                                        <td class="text-center"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_teorico"/></td>
-                                        <td class="text-center"><b>A.P.H.D.A.<br></br><br></br></b><span t-raw="unidad.actividades_practicas"/></td>
-                                        <td class="text-center"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_practicas"/></td>
-                                        <td class="text-center"><b>A.A.A<br></br><br></br></b><span t-raw="unidad.aprendizaje_autonomo"/></td>
-                                        <td class="text-center"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_autonomo"/></td>
-                                        <td class="text-center"><b>E.D.E<br>------</br><br></br></b><span t-raw="unidad.estrategias_evaluacion"/></td>
+                                        <td class="text-left"><b>UNIDAD/TEMA<br></br><br></br></b><span t-field="unidad.name"/></td>
+                                        <td class="text-left"><b>N.H<br></br><br></br></b><span t-field="unidad.horas"/></td>
+                                        <td class="text-left"><b>CONTENIDOS TEÓRICOS<br></br><br></br></b><span t-raw="unidad.contenido_teorico"/></td>
+                                        <td class="text-left"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_teorico"/></td>
+                                        <td class="text-left"><b>A.P.H.D.A.<br></br><br></br></b><span t-raw="unidad.actividades_practicas"/></td>
+                                        <td class="text-left"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_practicas"/></td>
+                                        <td class="text-left"><b>A.A.A<br></br><br></br></b><span t-raw="unidad.aprendizaje_autonomo"/></td>
+                                        <td class="text-left"><b>N.H<br></br><br></br></b><span t-field="unidad.horas_autonomo"/></td>
+                                        <td class="text-left"><b>E.D.E<br>------</br><br></br></b><span t-raw="unidad.estrategias_evaluacion"/></td>
                                     </tbody>
                                     </t>
                                 </thead>
@@ -587,7 +587,7 @@
                                     </thead>-->
                                     <tbody>
                                         <td class="text-left">DURACIÓN DE CADA SESIÓN<span t-field="sesion.duracion"/></td>
-                                        <td class="text-left">ONTENIDOS Y ACTIVIDADES DE ESTUDIO TEÓRICO<span t-raw="sesion.contenidos"/></td>
+                                        <td class="text-left">CONTENIDOS Y ACTIVIDADES DE ESTUDIO TEÓRICO<span t-raw="sesion.contenidos"/></td>
                                         <td class="text-left">ACTIVIDADES PRÁCTICAS<span t-raw="sesion.actividades_practicas"/></td>
                                         <td class="text-left">ACTIVIDADES DE TRABAJO AUTÓNOMO<span t-raw="sesion.trabajo_autonomo"/></td>
                                         <td class="text-left">ESCENARIO DE APRENDIZAJE<span t-raw="sesion.escenario_aprendizaje"/></td>
@@ -605,10 +605,10 @@
                                 </thead>
                                 <t t-foreach="obj.plananalitico_id.criterioevaluacion_id" t-as="criter">
                                     <tbody>
-                                        <td class="text-center"><span t-raw="criter.parametros_evaluacion"/></td>
-                                        <td class="text-center"><span t-field="criter.evaluacion1"/></td>
-                                        <td class="text-center"><span t-field="criter.evaluacion2"/></td>
-                                        <td class="text-center"><span t-field="criter.evaluacion3"/></td>
+                                        <td class="text-left"><span t-raw="criter.parametros_evaluacion"/></td>
+                                        <td class="text-left"><span t-field="criter.evaluacion1"/></td>
+                                        <td class="text-left"><span t-field="criter.evaluacion2"/></td>
+                                        <td class="text-left"><span t-field="criter.evaluacion3"/></td>
                                     </tbody>
                                 </t>
                                 <tbody>
@@ -636,20 +636,20 @@
                             <t t-foreach="obj.bibliografia_ids" t-as="bibi">
                                 <t t-if="bibi.tipo == 'fisica'">
                                     <tbody>
-                                        <td class="text-center"><span t-field="bibi.autor"/></td>
-                                        <td class="text-center"><span t-field="bibi.name"/></td>
+                                        <td class="text-left"><span t-field="bibi.autor"/></td>
+                                        <td class="text-left"><span t-field="bibi.name"/></td>
                                         <!--<td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>-->
-                                        <td class="text-center"><span t-field="bibi.ciudad_pais"/></td>
-                                        <td class="text-center"><span t-field="bibi.edicion"/></td>
-                                        <td class="text-center"><span t-field="bibi.anio_publicacion"/></td>
-                                        <td class="text-center"><span t-field="bibi.editorial"/></td>
-                                        <td class="text-center"><span t-field="bibi.isbn"/></td>
+                                        <td class="text-left"><span t-field="bibi.ciudad_pais"/></td>
+                                        <td class="text-left"><span t-field="bibi.edicion"/></td>
+                                        <td class="text-left"><span t-field="bibi.anio_publicacion"/></td>
+                                        <td class="text-left"><span t-field="bibi.editorial"/></td>
+                                        <td class="text-left"><span t-field="bibi.isbn"/></td>
 
                                     </tbody>
                                     <t t-if="bibi.direccion_electr != ''">
                                         <tbody>
-                                            <td class="text-center">URL</td>
-                                             <td class="text-center" ><span t-field="bibi.direccion_electr"/></td>
+                                            <td class="text-left">URL</td>
+                                             <td class="text-left" ><span t-field="bibi.direccion_electr"/></td>
                                         </tbody>
                                     </t>
                                 </t>
@@ -671,13 +671,13 @@
                             <t t-foreach="obj.bibliografia_ids" t-as="bib">
                                 <t t-if="bib.tipo == 'virtual'">
                                     <tbody>
-                                        <td class="text-center"><span t-field="bib.autor"/></td>
-                                        <td class="text-center"><span t-field="bib.name"/></td>
+                                        <td class="text-left"><span t-field="bib.autor"/></td>
+                                        <td class="text-left"><span t-field="bib.name"/></td>
                                         <!--<td class="text-center"><span t-raw="contenido.detalle_contenidos"/></td>-->
-                                        <td class="text-center"><span t-field="bib.direccion_electr"/></td>
-                                        <td class="text-center"><span t-field="bib.anio_publicacion"/></td>
-                                        <td class="text-center"><span t-field="bib.editorial"/></td>
-                                        <td class="text-center"><span t-field="bib.isbn"/></td>
+                                        <td class="text-left"><span t-field="bib.direccion_electr"/></td>
+                                        <td class="text-left"><span t-field="bib.anio_publicacion"/></td>
+                                        <td class="text-left"><span t-field="bib.editorial"/></td>
+                                        <td class="text-left"><span t-field="bib.isbn"/></td>
 
                                     </tbody>
                                 </t>
@@ -720,9 +720,9 @@
                             </thead>
                             <t t-foreach="obj.contribucion_ids" t-as="contribucion">
                                 <tbody>
-                                    <td class="text-center"><span t-esc="contribucion.contenidos_asignatura"/></td>
-                                    <td class="text-center"><span t-field="contribucion.contribucion"/></td>
-                                    <td class="text-center"><span t-raw="contribucion.resultados_aprendizaje"/></td>
+                                    <td class="text-left"><span t-esc="contribucion.contenidos_asignatura"/></td>
+                                    <td class="text-left"><span t-field="contribucion.contribucion"/></td>
+                                    <td class="text-left"><span t-raw="contribucion.resultados_aprendizaje"/></td>
                                 </tbody>
                             </t>
                         </table>

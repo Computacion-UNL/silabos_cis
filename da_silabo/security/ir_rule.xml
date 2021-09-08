@@ -31,7 +31,7 @@
         <field name="name">Mostrar Planes Analiticos propios asignadas</field>
         <field name="model_id" ref="da_silabo.model_das_plananalitico"/>
         <field name="domain_force">
-            [(1,'=',1)]
+            [('responsable.id','=',user.id)]
         </field>
         <field name="groups" eval="[(4, ref('da_silabo.res_groups_docente')), (4, ref('da_silabo.res_groups_docente_consejo'))]"/>
         <field name="perm_create" eval="1"/>
@@ -57,7 +57,7 @@
         <field name="name">Mostrar Silabos propios</field>
         <field name="model_id" ref="da_silabo.model_das_silabo"/>
         <field name="domain_force">
-            [(1,'=',1)]
+             [('responsable.id','=',user.id)]
         </field>
         <field name="groups" eval="[(4, ref('da_silabo.res_groups_docente')), (4, ref('da_silabo.res_groups_docente_consejo'))]"/>
         <field name="perm_create" eval="1"/>
